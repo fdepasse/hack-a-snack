@@ -40,7 +40,9 @@ async function updateReview(req, res, next) {
 
     if (!selectedReview) {
       res.status(404).send({ message: 'Review Not Found' })
-    } else if (!currentUser._id.equals(selectedReview.user)) {
+    }
+
+    if (!currentUser._id.equals(selectedReview.user._id)) {
       res.status(401).send({ message: 'Unauthorized' })
     }
 
@@ -70,10 +72,12 @@ async function deleteReview(req, res, next) {
 
     if (!selectedReview) {
       res.status(404).send({ message: 'Review Not Found' })
-    } else if (!currentUser._id.equals(selectedReview.user)) {
+    } 
+    
+    if (!currentUser._id.equals(selectedReview.user._id)) {
       res.status(401).send({ message: 'Unauthorized' })
     }
-    
+
     selectedReview.remove()
 
     const savedRecipe = await selectedRecipe.save()

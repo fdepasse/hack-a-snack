@@ -26,15 +26,14 @@ async function unstarredRecipes(req, res, next) {
   //get the recipe id from the request 
   const userId = req.currentUser
   const recipeId = req.params.recipeId
-  console.log(recipeId)
   try {
-    const thisRecipe = await Recipes.findById(recipeId)
-    const user = await user.findById(userId)
+    const user = await User.findById(userId).populate('savedRecipes')
 
-    const selectedStarredRecipe = await user.savedRecipes.id(thisRecipe)
+    console.log(user, recipeId)
+    const selectedStarredRecipe = await user.savedRecipes.id(recipeId)
 
     selectedStarredRecipe.remove()
-    const savedUser = await User.save()
+    const savedUser = await user.save()
     res.send(savedUser)
  
 
