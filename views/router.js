@@ -11,8 +11,8 @@ import secureRoute from '../middleware/secureRoute.js'
 router.route('/register')
   .post(user.register)
 
-// router.route('/login')
-//   .post(user.login)
+router.route('/login')
+  .post(user.login)
 
 router.route('/recipes')
   .get(recipes.getRecipes)
@@ -26,9 +26,9 @@ router.route('/recipes')
 // router.route('api/recipes/user/:userId')
 //   .get(secureRoute, recipes.getRecipesByUser)
 
-// router.route('api/user/:userId')
-//   .get(secureRoute, user.getUser)
-//   .put(secureRoute, user.updateProfile)
+router.route('/user/:userId')
+  .get(user.getUser)
+  .put(secureRoute, user.updateProfile)
 
 // router.route('api/myRecipes/:recipeId')
 //   .put(secureRoute, myRecipes.starredRecipes)
