@@ -6,6 +6,7 @@ import errorHandler from './middleware/errorHandler.js'
 import { port } from './config/environment.js'
 //! ---------------LATER-----------------
 import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 

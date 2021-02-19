@@ -1,13 +1,15 @@
-async function register(req, res, next) {
-  const body = req.body
+import Recipes from '../models/recipeSchema.js'
+
+
+async function getRecipes(_req, res, next) {
   try {
-    const user = await User.create(body)
-    res.status(201).send(user)
+    const recipes = await Recipes.find()
+    res.status(201).send(recipes)
   } catch (err) {
     next(err)
   }
 }
 
 export default {
-  register
+  getRecipes
 }

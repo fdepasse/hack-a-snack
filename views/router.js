@@ -14,9 +14,9 @@ router.route('/register')
 // router.route('/login')
 //   .post(user.login)
 
-// router.route('/recipes')
-//   .get(recipes.getRecipes)
-//   .post(secureRoute, recipes.makeRecipe)
+router.route('/recipes')
+  .get(recipes.getRecipes)
+  // .post(secureRoute, recipes.makeRecipe)
 
 // router.route('/recipes/:id')
 //   .get(recipes.getSingleRecipe)
