@@ -11,8 +11,8 @@ import secureRoute from '../middleware/secureRoute.js'
 // router.route('/register')
 //   .post(user.register)
 
-// router.route('/login')
-//   .post(user.login)
+router.route('/login')
+  .post(user.login)
 
 router.route('/recipes')
   .get(recipes.getRecipes)

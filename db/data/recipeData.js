@@ -31,12 +31,11 @@ export default function getRecipeData(user) {
                 user: user[0]
               }
               
-
             })
             resolve(recipeObj)
 
           })
-        }, timeoutNumber)
+      }, timeoutNumber)
 
     }))
 
