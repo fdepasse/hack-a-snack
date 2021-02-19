@@ -99,7 +99,7 @@ async function deleteRecipe(req, res, next) { //tested without secureRoute enabl
 export default {
   getRecipes,
   updateRecipe,
-  deleteRecipe
+  deleteRecipe,
   getSingleRecipe,
   makeRecipe,
   getRecipesByUser

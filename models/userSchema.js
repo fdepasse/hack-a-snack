@@ -36,7 +36,7 @@ userSchema
 userSchema
   .pre('validate', function checkPassword(next) {
     if (this.isModified('password') && (this.password !== this._passwordConfirmation)) {
-      this.invalidate('asswordConfirmation', 'Both passwords must match for you to enter!')
+      this.invalidate('passwordConfirmation', 'Both passwords must match for you to enter!')
     }
     next()
   })

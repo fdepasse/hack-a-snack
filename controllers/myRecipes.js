@@ -11,8 +11,8 @@ async function starredRecipes(req, res, next) {
     const user = await User.findById(userId)
 
     //push the recipe id to the array of recipes on the user 
-    User.savedRecipes.push(recipeId)
-    const savedUser = await User.save()
+    user.savedRecipes.push(thisRecipe)
+    const savedUser = await user.save()
     res.send(savedUser)
     // console.log(User.savedRecipes)
 
@@ -31,10 +31,10 @@ async function unstarredRecipes(req, res, next) {
     const thisRecipe = await Recipes.findById(recipeId)
     const user = await User.findById(userId)
 
-    const selectedStarredRecipe = await User.savedRecipes.id(recipeId)
+    const selectedStarredRecipe = await user.savedRecipes.id(recipeId)
 
     selectedStarredRecipe.remove()
-    const savedUser = await User.save()
+    const savedUser = await user.save()
     res.send(savedUser)
  
 

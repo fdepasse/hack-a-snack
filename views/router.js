@@ -34,10 +34,10 @@ router.route('/myRecipes/:recipeId')
   .put(secureRoute, myRecipes.starredRecipes)
   .delete(secureRoute, myRecipes.unstarredRecipes)
 
-router.route('recipes/:recipeId/review')
+router.route('/recipes/:recipeId/review')
   .post(secureRoute, reviews.postReview)
 
-router.route('/recipes/recipeId/review/:reviewId')
+router.route('/recipes/:recipeId/review/:reviewId')
   .put(secureRoute, reviews.updateReview)
   .delete(secureRoute, reviews.deleteReview)
 
