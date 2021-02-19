@@ -5,10 +5,10 @@ const reviewSchema = new mongoose.Schema({
   text: { type: String, required: true },
   rating: { type: Number, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
-},
-  {
-    timestamps: true
-  })
+}, {
+  timestamps: true
+})
+
 const recipeSchema = new mongoose.Schema({
   recipeName: { type: String, required: true },
   description: { type: String, required: true },
@@ -16,7 +16,7 @@ const recipeSchema = new mongoose.Schema({
   image: { type: String, required: true },
   servings: { type: Number, required: true },
   ingredients: {
-    type: [String], 
+    type: [String],
     required: true
   },
   source: { type: String },

@@ -1,6 +1,6 @@
 import express from 'express'
 import recipes from '../controllers/recipes.js'
-import comment from '../controllers/comment.js'
+import reviews from '../controllers/reviews.js'
 import myRecipes from '../controllers/myRecipes.js'
 import user from '../controllers/user.js'
 
@@ -23,22 +23,22 @@ router.route('/recipes')
 //   .put(secureRoute, recipes.updateRecipe)
 //   .delete(secureRoute, recipes.deleteRecipe)
 
-// router.route('api/recipes/user/:userId')
+// router.route('/recipes/user/:userId')
 //   .get(secureRoute, recipes.getRecipesByUser)
 
-// router.route('api/user/:userId')
+// router.route('/user/:userId')
 //   .get(secureRoute, user.getUser)
 //   .put(secureRoute, user.updateProfile)
 
-// router.route('api/myRecipes/:recipeId')
+// router.route('myRecipes/:recipeId')
 //   .put(secureRoute, myRecipes.starredRecipes)
 //   .delete(secureRoute, myRecipes.unstarredRecipes)
 
-// router.route('api/recipes/:recipeId/comment')
-//   .post(secureRoute, comment.makeComment)
+// router.route('recipes/:recipeId/review')
+//   .post(secureRoute, reviews.postReview)
 
-// router.route('api/recipes/recipeId/comment/:commentId')
-//   .put(secureRoute, comment.updateComment)
-//   .delete(secureRoute, comment.deleteComment)
+// router.route('/recipes/recipeId/review/:reviewId')
+//   .put(secureRoute, reviews.updateReview)
+//   .delete(secureRoute, reviews.deleteReview)
 
 export default router

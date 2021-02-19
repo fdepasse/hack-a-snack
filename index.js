@@ -4,7 +4,7 @@ import logger from './middleware/logger.js'
 import connectToDb from './lib/connectToDb.js'
 import errorHandler from './middleware/errorHandler.js'
 import { port } from './config/environment.js'
-//! ---------------LATER-----------------
+
 import dotenv from 'dotenv'
 dotenv.config()
 
