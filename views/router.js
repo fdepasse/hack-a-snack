@@ -24,10 +24,10 @@ router.route('/recipes/:id')
   .put(secureRoute, recipes.updateRecipe)
   .delete(secureRoute, recipes.deleteRecipe)
 
-router.route('api/recipes/user/:userId')
-  .get(secureRoute, recipes.getRecipesByUser)
+router.route('/recipes/user/:user')
+  .get(recipes.getRecipesByUser)
 
-router.route('api/user/:userId')
+router.route('/user/:userId')
   .get(secureRoute, user.getUser)
   .put(secureRoute, user.updateProfile)
 
@@ -38,7 +38,7 @@ router.route('/myRecipes/:recipeId')
 router.route('/recipes/:recipeId/comment')
   .post(secureRoute, comment.makeComment)
 
-router.route('api/recipes/recipeId/comment/:commentId')
+router.route('/recipes/recipeId/comment/:commentId')
   .put(secureRoute, comment.updateComment)
   .delete(secureRoute, comment.deleteComment)
 
