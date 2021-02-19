@@ -8,36 +8,36 @@ const router = express.Router()
 
 import secureRoute from '../middleware/secureRoute.js'
 
-router.route('/register')
-  .post(user.register)
+// router.route('/register')
+//   .post(user.register)
 
 // router.route('/login')
 //   .post(user.login)
 
 router.route('/recipes')
   .get(recipes.getRecipes)
-  // .post(secureRoute, recipes.makeRecipe)
+  .post(secureRoute, recipes.makeRecipe)
 
-// router.route('/recipes/:id')
-//   .get(recipes.getSingleRecipe)
+router.route('/recipes/:id')
+  .get(recipes.getSingleRecipe)
 //   .put(secureRoute, recipes.updateRecipe)
 //   .delete(secureRoute, recipes.deleteRecipe)
 
-// router.route('api/recipes/user/:userId')
-//   .get(secureRoute, recipes.getRecipesByUser)
+router.route('/recipes/user/:user')
+  .get(recipes.getRecipesByUser)
 
-// router.route('api/user/:userId')
+// router.route('/user/:userId')
 //   .get(secureRoute, user.getUser)
 //   .put(secureRoute, user.updateProfile)
 
-// router.route('api/myRecipes/:recipeId')
+// router.route('/myRecipes/:recipeId')
 //   .put(secureRoute, myRecipes.starredRecipes)
 //   .delete(secureRoute, myRecipes.unstarredRecipes)
 
-// router.route('api/recipes/:recipeId/comment')
+// router.route('/recipes/:recipeId/comment')
 //   .post(secureRoute, comment.makeComment)
 
-// router.route('api/recipes/recipeId/comment/:commentId')
+// router.route('/recipes/recipeId/comment/:commentId')
 //   .put(secureRoute, comment.updateComment)
 //   .delete(secureRoute, comment.deleteComment)
 
