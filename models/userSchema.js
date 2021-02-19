@@ -36,13 +36,14 @@ userSchema
 userSchema
   .pre('validate', function checkPassword(next) {
     if (this.isModified('password') && (this.password !== this._passwordConfirmation)) {
-      this.invalidate('asswordConfirmation', 'Both passwords must match for you to enter!')
+      this.invalidate('PasswordConfirmation', 'Both passwords must match for you to enter!')
     }
     next()
   })
 
 userSchema.plugin(uniqueValidator)
-userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true } }))
+userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true, passwordConfirmation: true } }))
+
 
 export default mongoose.model('User', userSchema)
 
