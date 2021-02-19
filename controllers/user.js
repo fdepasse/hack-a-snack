@@ -1,4 +1,4 @@
-async function register(req, res, next) {
+async function getUser(req, res, next) {
   const body = req.body
   try {
     const user = await User.create(body)
