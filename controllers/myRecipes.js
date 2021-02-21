@@ -33,11 +33,11 @@ async function starredRecipes(req, res, next) {
 
 async function unstarredRecipes(req, res, next) {
   //get the recipe id from the request 
-  const userId = req.currentUser
+  const userID = req.currentUser
   const recipeId = req.params.recipeId
 
   try {
-    const user = await User.findById(userId).populate('savedRecipes')
+    const user = await User.findById(userID).populate('savedRecipes')
 
     if (!user) {
       return res.status(404).send('User not found')
