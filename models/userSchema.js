@@ -1,18 +1,32 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-
 import mongooseHidden from 'mongoose-hidden'
 import uniqueValidator from 'mongoose-unique-validator'
 
+//!! install below backage for this too work
+// import isEmail from 'validator/lib/isEmail.js'
+// //npm install validator 
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
+  email: {
+    type: String,
+    required: [true, 'Email required'],
+    unique: true,
+    validate: {
+      validator: function (v) {
+        return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v)
+      },
+      message: 'Not a valid email hunny'
+    }
+  },
   image: { type: String },
-  password: { type: String, required: true },
+  password: { type: String, required: true, minlength: 8, message: 'Password must be more than 8 character...' },
   isAdmin: { type: Boolean },
   savedRecipes: [{ type: mongoose.Schema.ObjectId, ref: 'Recipes' }],
   postedRecipes: [{ type: mongoose.Schema.ObjectId, ref: 'Recipes' }]
 })
+
 
 
 userSchema.pre('save', function (next) {

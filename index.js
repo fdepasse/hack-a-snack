@@ -28,6 +28,8 @@ async function startServer() {
 
 startServer()
 
+
+//!! we are exporting our express server so we can use it for testing
 export default app
 
 

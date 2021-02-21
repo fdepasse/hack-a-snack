@@ -1,26 +1,32 @@
 import Recipes from '../models/recipeSchema.js'
 import User from '../models/userSchema.js'
 
+
 async function starredRecipes(req, res, next) {
   //get the recipe id from the request 
   const userId = req.currentUser
   const recipeId = req.params.recipeId
-  console.log(recipeId)
   try {
     const thisRecipe = await Recipes.findById(recipeId)
-    const User = await User.findById(userId)
+    if (!thisRecipe) {
+      res.status(404).send('Recipe not found')
+    }
+    const user = await User.findById(userId).populate('savedRecipes')
+    if (!user) {
+      res.status(404).send('User not found')
+    }
 
-    //push the recipe id to the array of recipes on the user 
+    console.log('this:', userId)
+    console.log('this:', thisRecipe)
     user.savedRecipes.push(thisRecipe)
     const savedUser = await user.save()
     res.send(savedUser)
-    // console.log(User.savedRecipes)
-
   } catch (err) {
     console.log(err)
     next(err)
   }
 }
+
 
 async function unstarredRecipes(req, res, next) {
   //get the recipe id from the request 

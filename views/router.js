@@ -30,7 +30,7 @@ router.route('/user/:userId')
   .get(secureRoute, user.getUser)
   .put(secureRoute, user.updateProfile)
 
-router.route('/myRecipes/:recipeId')
+router.route('/myrecipes/:recipeId')
   .put(secureRoute, myRecipes.starredRecipes)
   .delete(secureRoute, myRecipes.unstarredRecipes)
 
