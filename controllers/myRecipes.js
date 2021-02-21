@@ -2,20 +2,19 @@ import Recipes from '../models/recipeSchema.js'
 import User from '../models/userSchema.js'
 
 async function starredRecipes(req, res, next) {
-  //get the recipe id from the request 
   const userId = req.currentUser
   const recipeId = req.params.recipeId
-  console.log(recipeId)
   try {
     const thisRecipe = await Recipes.findById(recipeId)
-    const User = await User.findById(userId)
+    const user = await User.findById(userId)
 
-    //push the recipe id to the array of recipes on the user 
+    if (!thisRecipe) {
+      return res.send({ message: 'No recipe found' })
+    }
+
     user.savedRecipes.push(thisRecipe)
     const savedUser = await user.save()
     res.send(savedUser)
-    // console.log(User.savedRecipes)
-
   } catch (err) {
     console.log(err)
     next(err)
@@ -25,17 +24,18 @@ async function starredRecipes(req, res, next) {
 async function unstarredRecipes(req, res, next) {
   //get the recipe id from the request 
   const userId = req.currentUser
-  const recipeId = req.params.recipeId
+  // const recipeId = req.params.recipeId
+  const recipeId = req.params
   try {
     const user = await User.findById(userId).populate('savedRecipes')
 
-    console.log(user, recipeId)
     const selectedStarredRecipe = await user.savedRecipes.id(recipeId)
-
+    //tofind the recipe in the user array 
+    //.id() is supposed to find something that you've stored in an array on your schema look in the arrya by the id
     selectedStarredRecipe.remove()
     const savedUser = await user.save()
     res.send(savedUser)
- 
+
 
   } catch (err) {
     console.log(err)

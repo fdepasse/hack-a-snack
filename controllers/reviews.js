@@ -6,12 +6,18 @@ async function postReview(req, res, next) {
   reviewData.user = currentUser
   const recipeId = req.params.recipeId
 
+
   try {
     const selectedRecipe = await Recipes.findById(recipeId).populate('review.user').populate('user')
 
     if (!selectedRecipe) (
       res.status(404).send({ message: 'Recipe Not Found' })
     )
+
+    // console.log('selectedRecipe' + selectedRecipe)
+    // console.log('reviewdata' + reviewData)
+    // console.log('review =' + review)
+    
 
     selectedRecipe.review.push(reviewData)
 

@@ -1,4 +1,5 @@
 import Recipes from '../models/recipeSchema.js'
+import User from '../models/userSchema.js'
 
 async function getRecipes(_req, res, next) {
   try {
@@ -25,6 +26,9 @@ async function makeRecipe(req, res, next) {
 
   try {
     const newRecipe = await Recipes.create(body)
+    const user = await User.findById(body.user)
+    user.postedRecipes.push(newRecipe)
+    await user.save()
     res.status(201).send(newRecipe)
   } catch (err) {
     next(err)
