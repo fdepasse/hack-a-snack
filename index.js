@@ -4,8 +4,8 @@ import logger from './middleware/logger.js'
 import connectToDb from './lib/connectToDb.js'
 import errorHandler from './middleware/errorHandler.js'
 import { port } from './config/environment.js'
-
 import dotenv from 'dotenv'
+
 dotenv.config()
 
 const app = express()

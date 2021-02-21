@@ -18,7 +18,7 @@ router.route('/recipes')
   .get(recipes.getRecipes)
   .post(secureRoute, recipes.makeRecipe)
 
-router.route('/recipes/:id')
+router.route('/recipes/:recipeId')
   .get(recipes.getSingleRecipe)
   .put(secureRoute, recipes.updateRecipe)
   .delete(secureRoute, recipes.deleteRecipe)

@@ -1,9 +1,10 @@
 import Recipes from '../models/recipeSchema.js'
+import User from '../models/userSchema.js'
 
 async function getRecipes(_req, res, next) {
   try {
     const recipeList = await Recipes.find().populate('user').populate('comments.user')
-    res.status(201).send(recipeList)
+    res.status(200).send(recipeList)
   } catch (err) {
     next(err)
   }
@@ -25,6 +26,9 @@ async function makeRecipe(req, res, next) {
 
   try {
     const newRecipe = await Recipes.create(body)
+    const user = await User.findById(body.user)
+    user.postedRecipes.push(newRecipe)
+    await user.save()
     res.status(201).send(newRecipe)
   } catch (err) {
     next(err)
@@ -33,7 +37,6 @@ async function makeRecipe(req, res, next) {
 
 async function getRecipesByUser(req, res, next) {
   const user = req.params
-  console.log(req.params)
   try {
     const userRecipe = await Recipes.find(user).populate('user').populate('comments.user')
     res.status(201).send(userRecipe)

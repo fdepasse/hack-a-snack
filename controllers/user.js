@@ -6,10 +6,17 @@ import { secret } from '../config/environment.js'
 //!! This will allow anyone to register
 //!! No guard condition but error handling is done on the userSchema
 async function register(req, res, next) {
+  if (req.body.isAdmin) {
+    req.body.isAdmin = false
+  }
   const body = req.body
+<<<<<<< HEAD
+=======
+  body.isAdmin = false
+>>>>>>> development
   try {
     const newReg = await User.create(body)
-    res.send(newReg)
+    res.status(201).send(newReg)
   } catch (err) {
     next(err)
   }

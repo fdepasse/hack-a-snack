@@ -1,8 +1,8 @@
-import recipeSchema from '../../models/recipeSchema.js'
-import userSchema from '../../models/userSchema.js'
+import User from '../../models/userSchema.js'
+import Recipes from '../../models/recipeSchema.js'
 
 export default async function tearDown(done) {
-  await recipeSchema.deleteMany()
-  await userSchema.deleteMany()
+  await User.deleteMany()
+  await Recipes.deleteMany()
   done()
 }

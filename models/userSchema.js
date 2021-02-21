@@ -56,7 +56,7 @@ userSchema
   })
 
 userSchema.plugin(uniqueValidator)
-userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true, passwordConfirmation: true } }))
+userSchema.plugin(mongooseHidden({ defaultHidden: { password: true, email: true, passwordConfirmation: true, isAdmin: true } }))
 
 
 export default mongoose.model('User', userSchema)
