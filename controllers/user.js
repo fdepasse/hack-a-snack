@@ -9,7 +9,7 @@ async function register(req, res, next) {
 
   try {
     const newReg = await User.create(body)
-    res.send(newReg)
+    res.status(201).send(newReg)
   } catch (err) {
     next(err)
   }
