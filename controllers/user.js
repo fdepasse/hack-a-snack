@@ -10,10 +10,7 @@ async function register(req, res, next) {
     req.body.isAdmin = false
   }
   const body = req.body
-<<<<<<< HEAD
-=======
   body.isAdmin = false
->>>>>>> development
   try {
     const newReg = await User.create(body)
     res.status(201).send(newReg)
