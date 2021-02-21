@@ -15,10 +15,6 @@ export default async function secureRoute(req, res, next) {
 
     const token = authToken.replace('Bearer ', '')
 
-    // console.log('🤖' + ' ' + authToken)
-    // console.log('🤖' + ' ' + token)
-
-
     jwt.verify(token, secret, async (err, data) => {
 
       if (err) {

@@ -5,11 +5,14 @@ import { secret } from '../config/environment.js'
 
 
 async function register(req, res, next) {
+  if (req.body.isAdmin) {
+    req.body.isAdmin = false
+  }
   const body = req.body
-
+  body.isAdmin = false
   try {
     const newReg = await User.create(body)
-    res.send(newReg)
+    res.status(201).send(newReg)
   } catch (err) {
     next(err)
   }
