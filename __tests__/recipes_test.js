@@ -1,36 +1,29 @@
+/* eslint-disable no-undef */
 import { expect } from 'chai'
 import setup from './lib/setup.js'
 import tearDown from './lib/tearDown.js'
 
-describe('Testing GET recipes', () => {
-
+// Setting up Mocha to be done before each test
+// Test recipes end points
+describe('Testing recipes end points', () => {
+  // Seed a fresh database before each test, before and afterEach are from Mocha
   beforeEach(done => {
     setup(done)
   })
-
   afterEach(done => {
     tearDown(done)
   })
 
-  it('should return a 201 response', done => {
+  // Test 1
+  it('Should create an array of 5 recipes and return a 200 status', done => {
+    // Supertest
     api.get('/api/recipes')
+      // Chai
       .end((err, res) => {
-        expect(res.status).to.eq(201)
+        expect(res.status).to.equal(200)
+        expect(res.body).to.be.an('array')
+        expect(res.body.length).to.equal(5)        
         done()
       })
   })
-
-  // ? This is an individual test:
-  // it('should return an array of 4 pokemon', done => {
-  //   // ! The api part is SUPERTEST
-  //   api.get('/api/pokemon')
-  //     .end((err, res) => {
-  //       // ? Expect its an array
-  //       // ! the expect part is CHAI
-  //       expect(res.body).to.be.an('array')
-  //       expect(res.body.length).to.eq(4)
-  //       done()
-  //     })
-  // })
-
 })

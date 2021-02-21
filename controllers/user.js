@@ -3,10 +3,17 @@ import jwt from 'jsonwebtoken'
 import { secret } from '../config/environment.js'
 
 
-
+//!! This will allow anyone to register
+//!! No guard condition but error handling is done on the userSchema
 async function register(req, res, next) {
+  if (req.body.isAdmin) {
+    req.body.isAdmin = false
+  }
   const body = req.body
-
+<<<<<<< HEAD
+=======
+  body.isAdmin = false
+>>>>>>> development
   try {
     const newReg = await User.create(body)
     res.status(201).send(newReg)
@@ -15,7 +22,7 @@ async function register(req, res, next) {
   }
 }
 
-
+//!! This will allow anyone to login and retrieve a bearer token
 async function login(req, res, next) {
   const password = req.body.password
   try {
@@ -35,10 +42,14 @@ async function login(req, res, next) {
   }
 }
 
+//!! This will allow ANYONE LOGGED IN, to View ANYONE'S PROFILE
 async function getUser(req, res, next) {
   const userId = req.params.userId
   try {
     const singleUser = await User.findById(userId)
+    if (!userId) {
+      return res.status(401).send({ message: 'Profile does not exist' })
+    }
     res.send(singleUser)
   } catch (err) {
     console.log(err)
@@ -46,6 +57,9 @@ async function getUser(req, res, next) {
   }
 }
 
+
+//!! This will only allow admin OR the user that created the account to UPDATE the account
+//!! To update your account you will need to also enter your password.
 async function updateProfile(req, res, next) {
   const userId = req.params.userId
   const body = req.body
@@ -59,7 +73,7 @@ async function updateProfile(req, res, next) {
       return res.send({ message: 'No user found!' })
     }
 
-    if (!singleUser._id.equals(currentUser._id)) {
+    if (!currentUser.isAdmin && !singleUser._id.equals(currentUser._id)) {
       return res.status(401).send({ message: 'You cannot edit this account ' })
     }
     singleUser.set(body)
