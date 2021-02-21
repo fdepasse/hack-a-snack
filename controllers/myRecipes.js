@@ -45,5 +45,5 @@ async function unstarredRecipes(req, res, next) {
 
 export default {
   starredRecipes,
-  unstarredRecipes,
+  unstarredRecipes
 }
