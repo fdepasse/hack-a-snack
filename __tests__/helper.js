@@ -1,7 +1,7 @@
 // Setting environemnt to be test on npm run test
 process.env.NODE_ENV = 'test'
 
-// Settting up CHAI (assertion libray / true or false about code tested)
+// Setting up CHAI (assertion libray / true or false about code tested)
 import chai from 'chai'
 global.expect = chai.expect
 
