@@ -44,7 +44,8 @@ async function unstarredRecipes(req, res, next) {
       return res.status(404).send('User not found')
     }
 
-    const selectedStarredRecipe = await user.savedRecipes.id(recipeId)
+    const selectedStarredRecipe = await user.savedRecipes(recipeId)
+    console.log(selectedStarredRecipe)
     //tofind the recipe in the user array 
     //.id() is supposed to find something that you've stored in an array on your schema look in the arrya by the id
 
