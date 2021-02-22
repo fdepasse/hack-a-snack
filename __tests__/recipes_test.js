@@ -16,13 +16,11 @@ describe('Testing recipes end points', () => {
 
   // Test 1
   it('Should create an array of 5 recipes and return a 200 status', done => {
-    // Supertest
     api.get('/api/recipes')
-      // Chai
       .end((err, res) => {
-        expect(res.status).to.equal(200)
+        expect(res.status).to.eq(200)
         expect(res.body).to.be.an('array')
-        expect(res.body.length).to.equal(5)        
+        expect(res.body.length).to.eq(5)
         done()
       })
   })

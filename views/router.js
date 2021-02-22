@@ -32,7 +32,9 @@ router.route('/user/:userId')
 
 router.route('/myrecipes/:recipeId')
   .put(secureRoute, myRecipes.starredRecipes)
-  .delete(secureRoute, myRecipes.unstarredRecipes)
+
+router.route('/myrecipes/unstar/:recipeId')
+  .put(secureRoute, myRecipes.unstarredRecipes)
 
 router.route('/recipes/:recipeId/review/:reviewId')
   .put(secureRoute, reviews.updateReview)
