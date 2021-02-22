@@ -18,33 +18,35 @@ const AllRecipes = () => {
       })
   }, [])
 
+  console.log(recipeData)
+
   return <section className="section">
-      <div className="container">
-        <div className="columns is-multiline is-mobile">
-          {recipeData.map((recipe, index) => {
-            return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
-              <Link to={`/recipes/${recipe._id}`}>
-                <div className="card">
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <p className="title is-5">{recipe.recipeName}</p>
-                        <p className="subtitle is-6">{'Serves: ' + recipe.servings}</p>
-                        <p className="subtitle is-6">{'Added by: ' + recipe.user.username}</p>
-                      </div>
+    <div className="container">
+      <div className="columns is-multiline is-mobile">
+        {recipeData.map((recipe, index) => {
+          return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
+            <Link to={`/recipes/${recipe._id}`}>
+              <div className="card">
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-content">
+                      <p className="title is-5">{recipe.recipeName}</p>
+                      <p className="subtitle is-6">{'Serves: ' + recipe.servings}</p>
+                      <p className="subtitle is-6">{'Added by: ' + recipe.user.username}</p>
                     </div>
                   </div>
-                  <div className="card-image">
-                    <figure className="image is-4by3">
-                      <img src={recipe.image} alt={recipe.name} />
-                    </figure>
-                  </div>
                 </div>
-              </Link>
-            </div>
-          })}
-        </div>
+                <div className="card-image">
+                  <figure className="image is-4by3">
+                    <img src={recipe.image} alt={recipe.name} />
+                  </figure>
+                </div>
+              </div>
+            </Link>
+          </div>
+        })}
       </div>
+    </div>
   </section>
 }
 
