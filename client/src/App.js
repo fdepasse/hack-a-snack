@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import AllRecipes from './components/AllRecipes'
 import SingleRecipe from './components/SingleRecipe'
 import UserRecipes from './components/UserRecipes'
+import Footer from './components/Footer'
 // import AddRecipeModal from './components/AddRecipeModal'
 // import UpdateProfileModal from './components/UpdateProfileModal'
 
@@ -31,6 +32,7 @@ const App = () => (
       {/* <Route exact path="/myaccount" component={AddRecipeModal} />
       <Route exact path="/myaccount" component={UpdateProfileModal} /> */}
     </Switch>
+    <Footer />
   </BrowserRouter>
 )
 

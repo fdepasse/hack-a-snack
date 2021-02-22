@@ -18,6 +18,8 @@ const AllRecipes = () => {
       })
   }, [])
 
+  console.log(recipeData)
+
   return <section className="section">
     <div className="container">
       <div className="columns is-multiline is-mobile">
