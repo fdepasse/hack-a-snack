@@ -17,6 +17,7 @@ async function getSingleRecipe(req, res, next) {
     console.log(id)
     res.status(201).send(recipe)
   } catch (err) {
+    console.log(err)
     next(err)
     console.log(err)
   }
@@ -60,7 +61,7 @@ async function updateRecipe(req, res, next) { //tested without secureRoute enabl
       return res.send({ message: 'No recipe found' })
     }
     // check the user is the one who created the recipe || my main man masterchef
-    if (!currentUser.isAdmin && !recipeToUpdate.user.equals(currentUser._id)){
+    if (!currentUser.isAdmin && !recipeToUpdate.user.equals(currentUser._id)) {
       return res.status(401).send({ message: 'Unauthorized' })
     }
     recipeToUpdate.set(body)
@@ -81,13 +82,13 @@ async function deleteRecipe(req, res, next) { //tested without secureRoute enabl
   try {
 
     const recipeToDelete = await Recipes.findById(id)//add populate user and comments user here?
- 
+
     //check if there's actually a recipe 
     if (!recipeToDelete) {
       return res.send({ message: 'No recipe found' })
     }
     // check the user is the one who created the recipe || my main man masterchef
-    if (!currentUser.isAdmin && !recipeToDelete.user.equals(currentUser._id)){
+    if (!currentUser.isAdmin && !recipeToDelete.user.equals(currentUser._id)) {
       return res.status(401).send({ message: 'Unauthorized' })
     }
     await recipeToDelete.deleteOne()
@@ -95,11 +96,26 @@ async function deleteRecipe(req, res, next) { //tested without secureRoute enabl
     res.send(recipeToDelete)
 
   } catch (err) {
-    console.log(err)
+    console.log('ERROR:', err)
     next()
   }
-
 }
+
+async function getRandomRecipe(_req, res, next) {
+  try {
+    const recipeList = await Recipes.find().populate('user').populate('comments.user')
+
+    const randomIndex = Math.floor(Math.random() * recipeList.length)
+
+    const randomRecipe = recipeList[randomIndex]
+
+    res.status(200).send(randomRecipe)
+    
+  } catch (err) {
+    next(err)
+  }
+}
+
 
 export default {
   getRecipes,
@@ -107,5 +123,6 @@ export default {
   deleteRecipe,
   getSingleRecipe,
   makeRecipe,
-  getRecipesByUser
+  getRecipesByUser,
+  getRandomRecipe
 }

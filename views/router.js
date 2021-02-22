@@ -43,6 +43,7 @@ router.route('/recipes/:recipeId/review/:reviewId')
 router.route('/recipes/:recipeId/review')
   .post(secureRoute, reviews.postReview)
 
-
+router.route('/random-recipe')
+  .get(recipes.getRandomRecipe)
 
 export default router
