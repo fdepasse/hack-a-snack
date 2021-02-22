@@ -25,8 +25,8 @@ const App = () => (
       <Route exact path="/login" component={Login} />
       <Route exact path="/logout" component={Logout} />
       <Route exact path="/myaccount" component={MyAccount} />
-      <Route exact path="/allrecipes" component={AllRecipes} />
-      <Route exact path="/singlerecipe" component={SingleRecipe} />
+      <Route exact path="/recipes" component={AllRecipes} />
+      <Route exact path="/recipes/:recipeId" component={SingleRecipe} />
       <Route exact path="/userrecipes" component={UserRecipes} />
       {/* <Route exact path="/myaccount" component={AddRecipeModal} />
       <Route exact path="/myaccount" component={UpdateProfileModal} /> */}
