@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import AllRecipes from './components/AllRecipes'
 import SingleRecipe from './components/SingleRecipe'
 import UserRecipes from './components/UserRecipes'
+import Footer from './components/Footer'
 
 import 'bulma'
 import './styles/style.scss'
@@ -27,6 +28,7 @@ const App = () => (
       <Route exact path="/recipes/:recipeId" component={SingleRecipe} />
       <Route exact path="/userrecipes" component={UserRecipes} />
     </Switch>
+    <Footer />
   </BrowserRouter>
 )
 
