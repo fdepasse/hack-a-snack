@@ -20,20 +20,28 @@ async function starredRecipes(req, res, next) {
       return res.status(404).send('User not found')
     }
 
+    const savedRecipes = await user.savedRecipes
+
+    const recipeIndex = (savedRecipes.findIndex(function (recipe) {
+      return String(recipe._id) === String(recipeId)
+    }))
+
+    // if (recipeIndex) {
+    //   return res.status(403).send('Recipe already saved')
+    // }
+
     user.savedRecipes.push(thisRecipe)
 
     const savedUser = await user.save()
     res.status(201).send(savedUser)
 
   } catch (err) {
-    console.log(err)
     next(err)
   }
 }
 
 
 async function unstarredRecipes(req, res, next) {
-  //get the recipe id from the request 
   const userID = req.currentUser
   const recipeId = req.params.recipeId
 
@@ -44,22 +52,23 @@ async function unstarredRecipes(req, res, next) {
       return res.status(404).send('User not found')
     }
 
-    const selectedStarredRecipe = await user.savedRecipes.id(recipeId)
-    //tofind the recipe in the user array 
-    //.id() is supposed to find something that you've stored in an array on your schema look in the arrya by the id
+    const savedRecipes = await user.savedRecipes
 
-    if (!selectedStarredRecipe) {
-      return res.status(404).send('Recipe not found')
-    }
+    const recipeIndex = (savedRecipes.findIndex(function (recipe) {
+      return String(recipe._id) === String(recipeId)
+    }))
 
-    selectedStarredRecipe.remove()
+    // if (!recipeIndex) {
+    //   return res.status(404).send('Recipe not found')
+    // }
+
+    savedRecipes.splice(recipeIndex, 1)
 
     const savedUser = await user.save()
-    
+
     res.send(savedUser)
 
   } catch (err) {
-    console.log(err)
     next(err)
   }
 }

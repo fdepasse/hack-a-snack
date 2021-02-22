@@ -19,7 +19,8 @@
     "mongoose": "^5.11.15",
     "mongoose-hidden": "^1.9.1",
     "mongoose-unique-validator": "^2.0.3",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
     "chai": "^4.3.0",

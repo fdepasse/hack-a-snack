@@ -18,7 +18,7 @@ describe('Testing user end point', () => {
       .send(
         {
           username: 'newuser1',
-          email: 'newuser1@newuser1',
+          email: 'newuser1@newuser1.com',
           password: 'newuser1',
           passwordConfirmation: 'newuser1'
         })
@@ -35,7 +35,7 @@ describe('Testing user end point', () => {
       .send(
         {
           username: 'newuser1',
-          email: 'newuser1@newuser1',
+          email: 'newuser1@newuser1.com',
           password: 'newuser1',
           passwordConfirmation: 'newuser1'
         })
@@ -46,7 +46,7 @@ describe('Testing user end point', () => {
         api.post('/api/login')
           .send(
             {
-              email: 'newuser1@newuser1',
+              email: 'newuser1@newuser1.com',
               password: 'newuser1'
             })
           .end((err, res) => {
@@ -58,11 +58,10 @@ describe('Testing user end point', () => {
   })
 
   it('Fail @ sign missing', done => {
-
     api.post('/api/register')
       .send({
-        username: 'mrtest@test',
-        email: 'test@tester.com',
+        username: 'mrtesttest',
+        email: 'testtester.com',
         password: 'mrtesttest229',
         passwordConfirmation: 'mrtesttest229'
       })
@@ -74,7 +73,6 @@ describe('Testing user end point', () => {
   })
 
   it('Fail period missing from email', done => {
-
     api.post('/api/register')
       .send({
         username: 'mrtesttest',
@@ -90,7 +88,6 @@ describe('Testing user end point', () => {
   })
 
   it('Fail @ sign is missing from email', done => {
-
     api.post('/api/register')
       .send({
         username: 'mrtesttest',
@@ -123,7 +120,6 @@ describe('Testing user end point', () => {
   })
 
   it('Fail password confirmation does not match', done => {
-
     api.post('/api/register')
       .send({
         username: 'mrtesttest',
@@ -139,7 +135,6 @@ describe('Testing user end point', () => {
   })
 
   it('Username is already taken', done => {
-
     api.post('/api/register')
       .send({
         username: 'jess',
@@ -152,8 +147,7 @@ describe('Testing user end point', () => {
         done()
         console.log(err)
       })
-
-
-
   })
+
 })
+
