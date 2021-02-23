@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
   const [recipe, updateRecipe] = useState({})
+  const ingredientsList = recipe.ingredients
 
   useEffect(() => {
     async function fetchRecipe() {
@@ -49,7 +50,6 @@ const SingleRecipe = ({ match, history }) => {
     })
   }
 
-
   return <main>
 
     <div className="columns box is-four-fifths is-center" id="singlerecipebox">
@@ -85,7 +85,10 @@ const SingleRecipe = ({ match, history }) => {
           <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
           <div className="box">
             <h5 className="subtitle">{'Ingredients: '}</h5>
-            <p className="subtitle">{recipe.ingredients}</p>
+            {ingredientsList.map ((ingredient, index) => {
+              return <p key={index}>{ingredient}</p>
+            })
+            }
           </div>
         </div>
         <div className="block box">

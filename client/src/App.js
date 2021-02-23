@@ -12,6 +12,7 @@ import SingleRecipe from './components/SingleRecipe'
 import UserRecipes from './components/UserRecipes'
 import Footer from './components/Footer'
 
+
 import 'bulma'
 import './styles/style.scss'
 

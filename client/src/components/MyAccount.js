@@ -1,17 +1,27 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import Slider from 'react-slick'
+
 // import axios from 'axios'
 
 export default function myAccount() {
-  const [popular, updatePopular] = useState([])
+  const [saved, updateSaved] = useState([])
 
-  const settings = {
+ const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3
+    speed: 1000,
+    slidesToShow: 7,
+    slidesToScroll: 7,
+    autoplay: true
+  }
+
+  const sliderStyle = {
+    width: '100vw',
+    height: '25%',
+    position: 'fixed',
+    bottom: '0',
+    'background-color': 'hsl(348, 100%, 61%)'
   }
 
 
@@ -22,9 +32,10 @@ export default function myAccount() {
       <h2 className='title is-4'>Saved Recipes</h2>
       <div>
         <h2> Multiple items </h2>
-        <Slider {...settings}>
+        {/* <Slider {...settings}>
           <div>
             <h3>1</h3>
+            <img src='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'></img>
           </div>
           <div>
             <h3>2</h3>
@@ -50,11 +61,11 @@ export default function myAccount() {
           <div>
             <h3>9</h3>
           </div>
-        </Slider>
+        </Slider> */}
       </div>
       <h2 className='title is-4'>Posted Recipes</h2>
-      <button className='is-button'>Edit my account</button>
-      <button className='is-button'>Add a recipe</button>
+      <button className='is-button is-rounded'>Edit my account</button>
+      <button className='is-button is-rounded'>Add a recipe</button>
 
     </section>
     <section className='column is-one-third'>
