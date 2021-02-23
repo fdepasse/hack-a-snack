@@ -7,8 +7,11 @@ import { getLoggedInUserId } from './lib/auth'
 
 const Navbar = ({ history }) => {
   const [mobNav, updateMobNav] = useState(false)
+  const buttonStyle = {
+    'marginTop': '22px',
+    'marginLeft': '15px'
+  }
 
-  
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -19,8 +22,10 @@ const Navbar = ({ history }) => {
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <h1>STRESSIPIES</h1>
-      <a onClick={() => updateMobNav(!mobNav)} role="button" className={`navbar-burger ${mobNav ? 'is-active' : ''}` } aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <div className="buttons">
+        <Link to="/" className="button is-dark" style={buttonStyle}>STRESSIPIES</Link>
+      </div>
+      <a onClick={() => updateMobNav(!mobNav)} role="button" className={`navbar-burger ${mobNav ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true" />
         <span aria-hidden="true" />
         <span aria-hidden="true" />
