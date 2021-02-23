@@ -26,7 +26,7 @@ export default function Register({ history }) {
     try {
       // stop it from reloading my page.
       const { data } = await axios.post('/api/register', formData)
-   
+      console.log(formData)
       // console.log('here is my data' + data)
       //go back to login page
       history.push('/login')

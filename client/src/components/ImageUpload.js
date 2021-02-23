@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 export default function ImageUpload({ history }) {
-  const [inputValue, updateInputValue] = useState('')
+  // const [inputValue, updateInputValue] = useState('')
 
   const [formData, updateFormData] = useState({
     username: '',
@@ -16,7 +16,6 @@ export default function ImageUpload({ history }) {
     const name = event.target.name
     const value = event.target.value
 
-    updateInputValue(event.target.value)
     updateFormData({
       ...formData,
       [name]: value
@@ -69,8 +68,6 @@ export default function ImageUpload({ history }) {
         <form className='field' onSubmit={handleSubmit}>
 
 
-          {/* form data test */}
-
 
           <div className='field'>
             <label className='label'>Username</label>
@@ -119,7 +116,7 @@ export default function ImageUpload({ history }) {
               />
             </div>
           </div>
-                    <div className='field'>
+          <div className='field'>
             <label className='label'>Profile Picture</label>
             <div className='control'>
               <button className="button" onClick={handleUpload}>Click to upload an image</button>

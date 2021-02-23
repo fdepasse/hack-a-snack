@@ -13,7 +13,7 @@ import UserRecipes from './components/UserRecipes'
 import SearchResults from './components/SearchResults'
 import Footer from './components/Footer'
 import ImageUpload from './components/ImageUpload'
-import AddRecipeModal from './components/AddRecipeModal'
+import AddRecipeModal from './components/AddRecipe/AddRecipeModal'
 
 
 import 'bulma'

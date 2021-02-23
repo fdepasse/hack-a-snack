@@ -42,7 +42,7 @@ const Navbar = ({ history }) => {
         <div className="navbar-item">
           <div className="menu-item">
             {!loggedIn && <Link to="/register" className="button is-light">Register</Link>}
-            {!loggedIn && <Link to="/recipes" className="button is-light">All Recipes</Link>}
+            {<Link to="/recipes" className="button is-light">All Recipes</Link>}
             {loggedIn && <Link to="/myaccount" className="button is-dark">My Account</Link>}
             {loggedIn && <Link to="/modal" className="button is-light">Post a Recipe</Link>}
             {!loggedIn && <Link to="/login" className="button is-dark">Login</Link>}
