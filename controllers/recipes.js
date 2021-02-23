@@ -13,7 +13,7 @@ async function getRecipes(_req, res, next) {
 async function getSingleRecipe(req, res, next) {
   const id = req.params.recipeId
   try {
-    const recipe = await Recipes.findById(id).populate('user').populate('comments.user')
+    const recipe = await Recipes.findById(id).populate('user').populate('comments.user').populate('review.user')
     console.log(id)
     res.status(201).send(recipe)
   } catch (err) {

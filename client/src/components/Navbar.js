@@ -13,7 +13,6 @@ const Navbar = ({ history }) => {
     localStorage.removeItem('token')
     history.push('/')
   }
-  console.log(localStorage)
   const loggedIn = getLoggedInUserId()
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">

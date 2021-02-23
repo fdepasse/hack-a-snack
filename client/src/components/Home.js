@@ -13,7 +13,7 @@ const Home = ({ history }) => {
       })
   }, [])
 
-  
+
   function handleSubmit(event) {
     event.preventDefault()
     try {
@@ -23,11 +23,8 @@ const Home = ({ history }) => {
     }
   }
 
-
   return <main>
-
     <div className="columns is-centered is-multiline">
-
       <section className="section">
         <div className="column">
           <h2 className="title">WHY NOT TRY...</h2>
@@ -45,7 +42,6 @@ const Home = ({ history }) => {
           </Link>
         </div>
       </section>
-
       <section className="section">
         <div className="column">
           <h1 className="title">WELCOME TO STRESSIPE</h1>
@@ -70,13 +66,8 @@ const Home = ({ history }) => {
           </form>
         </div>
       </section>
-
     </div>
-
-
     <section className="section">Carousel</section>
-
-
   </main>
 }
 
