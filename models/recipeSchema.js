@@ -3,7 +3,7 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 const reviewSchema = new mongoose.Schema({
   text: { type: String, required: true },
-  rating: { type: Number, required: true },
+  rating: { type: Number},
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
 }, {
   timestamps: true
