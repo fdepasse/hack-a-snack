@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 // import axios from 'axios'
 
 export default function myAccount() {
