@@ -1,11 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-<<<<<<< HEAD
 import Slider from 'react-slick'
 
-=======
-// import Slider from 'react-slick'
->>>>>>> development
 // import axios from 'axios'
 
 export default function myAccount() {
@@ -27,8 +23,6 @@ export default function myAccount() {
     bottom: '0',
     'background-color': 'hsl(348, 100%, 61%)'
   }
-
-
 
   return <main className='is-flex'>
     <section className='column is-two-thirds'>

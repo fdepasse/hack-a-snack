@@ -10,7 +10,10 @@ import Navbar from './components/Navbar'
 import AllRecipes from './components/AllRecipes'
 import SingleRecipe from './components/SingleRecipe'
 import UserRecipes from './components/UserRecipes'
+import SearchResults from './components/SearchResults'
 import Footer from './components/Footer'
+import ImageUpload from './components/ImageUpload'
+import AddRecipeModal from './components/AddRecipeModal'
 
 
 import 'bulma'
@@ -28,6 +31,9 @@ const App = () => (
       <Route exact path="/recipes" component={AllRecipes} />
       <Route exact path="/recipes/:recipeId" component={SingleRecipe} />
       <Route exact path="/userrecipes" component={UserRecipes} />
+      <Route exact path="/search" component={SearchResults} />
+      <Route exact path="/image" component={ImageUpload} />
+      <Route exact path="/modal" component={AddRecipeModal} />
     </Switch>
     <Footer />
   </BrowserRouter>

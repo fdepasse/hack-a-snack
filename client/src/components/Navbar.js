@@ -22,10 +22,12 @@ const Navbar = ({ history }) => {
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-      <div className="buttons">
-        <Link to="/" className="button is-dark" style={buttonStyle}>STRESSIPIES</Link>
-      </div>
-      <a onClick={() => updateMobNav(!mobNav)} role="button" className={`navbar-burger ${mobNav ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a className="navbar-items">
+        <Link to={'/'}>
+          <img src="https://cdn.shopify.com/s/files/1/0306/1016/1723/files/logo.png?v=1614074360" width={220}/>
+        </Link>
+      </a>
+      <a onClick={() => updateMobNav(!mobNav)} role="button" className={`navbar-burger ${mobNav ? 'is-active' : ''}`} >
         <span aria-hidden="true" />
         <span aria-hidden="true" />
         <span aria-hidden="true" />
@@ -47,14 +49,14 @@ const Navbar = ({ history }) => {
           <div className="menu-item">
             {!loggedIn && <Link to="/register" className="button is-light">Register</Link>}
             {loggedIn && <Link to="/myaccount" className="button is-dark">My Account</Link>}
+            {loggedIn && <Link to="/modal" className="button is-light">Post a Recipe</Link>}
             {!loggedIn && <Link to="/login" className="button is-dark">Login</Link>}
-            {loggedIn && <button className="button" onClick={handleLogout}>Logout</button>}
+            {loggedIn && <button className="button is-light" onClick={handleLogout}>Logout</button>}
           </div>
         </div>
       </div>
     </div>
   </nav >
-
 
 }
 

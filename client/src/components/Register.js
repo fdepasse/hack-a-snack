@@ -7,7 +7,7 @@ export default function Register({ history }) {
     username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
+    passwordConfirmation: ''
   })
 
   function handleChange(event) {

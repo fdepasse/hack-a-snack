@@ -46,4 +46,7 @@ router.route('/recipes/:recipeId/review')
 router.route('/random-recipe')
   .get(recipes.getRandomRecipe)
 
+router.route('/search')
+  .get(recipes.searchRecipe)
+
 export default router
