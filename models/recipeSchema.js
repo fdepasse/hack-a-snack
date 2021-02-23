@@ -29,6 +29,8 @@ const recipeSchema = new mongoose.Schema({
   review: [reviewSchema]
 })
 
+recipeSchema.index({ '$**': 'text' })
+
 recipeSchema.plugin(uniqueValidator)
 
 export default mongoose.model('Recipes', recipeSchema)

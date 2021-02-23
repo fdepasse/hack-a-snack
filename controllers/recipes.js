@@ -110,12 +110,26 @@ async function getRandomRecipe(_req, res, next) {
     const randomRecipe = recipeList[randomIndex]
 
     res.status(200).send(randomRecipe)
-    
+
   } catch (err) {
     next(err)
   }
 }
 
+async function searchRecipe(req, res, next) {
+  const searchData = req.query.q
+
+  try {
+    const recipeList = await Recipes.find({ $text: { $search: `"${searchData}"` } }).populate('user').populate('comments.user')
+
+    console.log(recipeList)
+    res.status(200).send(recipeList)
+
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
 
 export default {
   getRecipes,
@@ -124,5 +138,6 @@ export default {
   getSingleRecipe,
   makeRecipe,
   getRecipesByUser,
-  getRandomRecipe
+  getRandomRecipe,
+  searchRecipe
 }
