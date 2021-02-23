@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import ImageUpload from './components/ImageUpload'
 import AddRecipeModal from './components/AddRecipeModal'
 
+
 import 'bulma'
 import './styles/style.scss'
 

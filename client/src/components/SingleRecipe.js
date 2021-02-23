@@ -56,7 +56,6 @@ const SingleRecipe = ({ match, history }) => {
       })
   }
 
-
   return <main>
     <div className="columns box is-four-fifths is-flex" id="singlerecipebox">
       <div className="column is-two-fifths is-flex">

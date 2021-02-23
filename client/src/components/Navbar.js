@@ -7,10 +7,6 @@ import { getLoggedInUserId } from './lib/auth'
 
 const Navbar = ({ history }) => {
   const [mobNav, updateMobNav] = useState(false)
-  const buttonStyle = {
-    'marginTop': '22px',
-    'marginLeft': '15px'
-  }
 
 
   const handleLogout = () => {
