@@ -43,7 +43,7 @@ async function login(req, res, next) {
 async function getUser(req, res, next) {
   const userId = req.params.userId
   try {
-    const singleUser = await User.findById(userId)
+    const singleUser = await User.findById(userId).populate('savedRecipes').populate('postedRecipes')
     if (!userId) {
       return res.status(401).send({ message: 'Profile does not exist' })
     }
@@ -53,7 +53,6 @@ async function getUser(req, res, next) {
     next(err)
   }
 }
-
 
 //!! This will only allow admin OR the user that created the account to UPDATE the account
 //!! To update your account you will need to also enter your password.

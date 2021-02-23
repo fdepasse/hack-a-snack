@@ -1,11 +1,9 @@
 import Recipes from '../models/recipeSchema.js'
 import User from '../models/userSchema.js'
 
-
 async function starredRecipes(req, res, next) {
   const userId = req.currentUser
   const recipeId = req.params.recipeId
-
 
   try {
     const thisRecipe = await Recipes.findById(recipeId)
