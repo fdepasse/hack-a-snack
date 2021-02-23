@@ -4,3 +4,20 @@
   align-items: center;
   justify-content: center;
 }
+
+.menu-item {
+  display: inline;
+}
+@media only screen and (max-width: 1000px) {
+  .menu-item {
+    display: grid;
+  }
+}
+
+nav.navbar {
+  background-color: #020100;
+}
+
+.navbar-item img {
+  max-height: 3.75rem;
+}
