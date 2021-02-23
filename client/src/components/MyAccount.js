@@ -14,8 +14,6 @@ export default function myAccount() {
     slidesToScroll: 3
   }
 
-
-
   return <main className='is-flex'>
     <section className='column is-two-thirds'>
       <h1 className='title is-2'>My Account</h1>
