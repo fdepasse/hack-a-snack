@@ -1,7 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import Slider from 'react-slick'
 
+=======
+// import Slider from 'react-slick'
+>>>>>>> development
 // import axios from 'axios'
 
 export default function myAccount() {
