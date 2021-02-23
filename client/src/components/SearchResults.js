@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const SearchResults = ({ location }) => {
+const SearchResults = ({ location, history }) => {
   const [recipeData, updateRecipeData] = useState([])
   const [searchData, updateSearchData] = useState(location.state)
-  // const [filterSelected, updateFilterSelected] = useState('All')
+  const [filterSelected, updateFilterSelected] = useState('All')
+  console.log(location)
 
   useEffect(() => {
     axios.get('/api/search', { params: { q: searchData } })
@@ -14,34 +15,31 @@ const SearchResults = ({ location }) => {
       })
   }, [])
 
+
   async function handleSubmit(event) {
     event.preventDefault()
     try {
       const { data } = await axios.get('/api/search', { params: { q: searchData } })
       updateRecipeData(data)
+      history.push({ pathname: '/search', state: searchData })
     } catch (err) {
       console.log(err)
     }
   }
 
-
-  // function toggleFilterClass(){
-
-
-  // }
-
-  // function filterResults() {
-  //   return recipeData.filter(recipe => {
-  //     if (filterSelected === 'All') {
-  //       return recipeData
-  //     } else {
-  //       recipe.recipeName.toLowerCase().includes(searchData.toLowerCase())
-  //     }
-  //   })
-  // }
+  function filterRecipes() {
+    return recipeData.filter(recipe => {
+      if (filterSelected === 'All') {
+        return recipeData
+      } else if (filterSelected === 'Recipe Name') {
+        return recipe.recipeName.toLowerCase().includes(searchData.toLowerCase())
+      } else {
+        return recipe.ingredients.join('').toLowerCase().includes(searchData.toLowerCase().split(' ').join(''))
+      }
+    })
+  }
 
   return <main>
-
     <section className="section">
       <div className="column">
         <h1 className="title">Results</h1>
@@ -67,25 +65,36 @@ const SearchResults = ({ location }) => {
       </div>
     </section>
 
-
     <section className="section">
       <div className="block">
         <h4 className="subtitle">Show Results by:</h4>
       </div>
-
       <div className="tabs is-boxed">
         <ul>
-          <li /*</ul>className={filterSelected === 'All' ? 'is-active' : '' }*/> <a>All</a></li>
-          <li /*className={filterSelected === 'recipeName' ? 'is-active' : '' }onClick={event => updateFilterSelected(event.target.id)}*/><a id="recipeName">Recipe Name</a></li>
-          <li><a value="ingredients">Ingredient Name</a></li>
+          <li
+            onClick={() => updateFilterSelected('All')}
+            className={`${filterSelected === 'All' ? 'is-active' : ''}`}>
+            <a>All</a>
+          </li>
+          <li
+            onClick={() => updateFilterSelected('Recipe Name')}
+            className={`${filterSelected === 'Recipe Name' ? 'is-active' : ''}`}>
+            <a>Recipe Name</a>
+          </li>
+          <li
+            onClick={() => updateFilterSelected('Ingredients')}
+            className={`${filterSelected === 'Ingredients' ? 'is-active' : ''}`}>
+            <a>Ingredient Name</a>
+          </li>
         </ul>
       </div>
 
       <div className="container">
         <div className="columns is-multiline is-mobile">
-          {recipeData.map((recipe, index) => {
+          {filterRecipes().map((recipe, index) => {
             return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
-              <Link to={`/recipes/${recipe._id}`}>
+              <Link
+                to={{ pathname: `/recipes/${recipe._id}`, state: searchData }}>
                 <div className="card">
                   <div className="card-content">
                     <div className="media">
@@ -107,11 +116,8 @@ const SearchResults = ({ location }) => {
           })}
         </div>
       </div>
-    </section>
-
-  </main>
-
-
+    </section >
+  </main >
 }
 
 export default SearchResults
