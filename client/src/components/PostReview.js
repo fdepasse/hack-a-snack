@@ -19,20 +19,38 @@ export default function PostReview(props) {
     await axios.delete(`/api/recipes/${recipes._id}/review/${reviewId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
+    props.fetchRecipe()
   }
 
-  return <div className="is-flex-direction-row">
+  return <div className=" block box is-flex-direction-row">
+
+    <div className="media-content" style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "center"
+        }}>
+    <img src={recipes.image} alt={recipes.recipeName} style={{borderRadius: "12px"}}/>
+    {isCreator(recipes.user._id) && <nav className="level is-mobile">
+          <div className="level-right">
+            <button
+            className="level-item"
+            className="fas fa-heart"
+            onClick={() => handleSaveRecipe(recipe._id)}>
+              </button>
+          </div>
+        </nav>}
+    </div>
+
+
     <h4 className="title">{'Reviews: '}</h4>
     <div className="subtitle box">{recipes.review && recipes.review.map(review => {
-      console.log(recipes)
       return <article key={review._id} className="media">
         <div className="media-content">
           <div className="content">
-            <p>{review.user.username}</p>
-            <p>{review.text}</p>
+            <p>{`${review.user.username}: ${review.text}`}</p>
           </div>
         </div>
-        {console.log(review)}
       
         {isCreator(review.user._id) && <div className="media-right">
           <button
@@ -52,7 +70,7 @@ export default function PostReview(props) {
             <div className="control">
               <textarea
                 className="textarea"
-                placeholder="Make a review.."
+                placeholder="Write a review..."
                 onChange={(event) => setText(event.target.value)}
                 value={text}
               >

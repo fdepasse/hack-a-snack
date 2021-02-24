@@ -30,7 +30,7 @@ const App = () => (
       <Route exact path="/myaccount" component={MyAccount} />
       <Route exact path="/recipes" component={AllRecipes} />
       <Route exact path="/recipes/:recipeId" component={SingleRecipe} />
-      <Route exact path="/userrecipes" component={UserRecipes} />
+      <Route exact path="/userrecipes/:user" component={UserRecipes} />
       <Route exact path="/search" component={SearchResults} />
       <Route exact path="/image" component={ImageUpload} />
       <Route exact path="/modal" component={AddRecipeModal} />
