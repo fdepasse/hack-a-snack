@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Slider from 'react-slick'
+import ShuffleCarousel from './randomShuffle'
 
 const Home = ({ history }) => {
   const [recipeData, updateRecipeData] = useState({})
@@ -25,16 +26,7 @@ const Home = ({ history }) => {
     }
   }
 
-  function shuffleRecipes() {
-    for (let i = 0; i <= 10; i++) {
-        axios.get('/api/random-recipe')
-          .then(({ data }) => {
-            updateRandomRecipes(data)
-          })
-        promises.push(randomRecipes)
-    }
-  }
-  shuffleRecipes()
+
 
   const settings = {
     dots: true,
@@ -95,13 +87,7 @@ const Home = ({ history }) => {
       </section>
     </div>
     <section className="section">
-      {/* <Slider {...settings} style={sliderStyle}>
-        {promises.map(recipe => {
-          return <Link key={recipe._id} to={`/recipes/${recipe._id}`}>
-            <img className='slideImage' src={recipe.image} alt={recipe.recipeName} />
-          </Link>
-        })}
-      </Slider> */}
+      <ShuffleCarousel />
     </section>
   </main>
 }
