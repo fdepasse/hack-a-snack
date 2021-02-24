@@ -34,13 +34,13 @@ export default function Register({ history }) {
       const errorMessage = err.response.data
    
       // if(errorMessage.errors.hasOwnProperty('email') && errorMessage.errors.hasOwnProperty('password')){
-      //   console.log('you messed up the password and email error dood')
+      //   console.log('you messed up the password and email')
       // }
       if(errorMessage.errors.hasOwnProperty('email')){
         alert(errorMessage.errors.email.message)
       }
       else if(errorMessage.errors.hasOwnProperty('password')){
-        alert(errorMessage.errors.password.message)
+        alert('Please enter a valid password')
       }
     }
   }

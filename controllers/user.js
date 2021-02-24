@@ -25,7 +25,7 @@ async function login(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email })
     if (!user || !user.validatePassword(password)) {
-      return res.status(401).send({ message: 'Wrong password hun!' })
+      return res.status(401).send({ message: 'Please enter a valid email and password' })
     }
     const token = jwt.sign(
       { userId: user._id },
