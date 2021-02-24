@@ -54,10 +54,12 @@ export default function Register({ history }) {
       history.push('/login')
     } catch (err) {
       const errorMessage = err.response.data
-      if (errorMessage.errors.hasOwnProperty('email')) {
+
+      if(errorMessage.errors.hasOwnProperty('email')){
         alert(errorMessage.errors.email.message)
-      } else if (errorMessage.errors.hasOwnProperty('password')) {
-        alert(errorMessage.errors.password.message)
+      }
+      else if(errorMessage.errors.hasOwnProperty('password')){
+        alert('Please enter a valid password')
       }
     }
   }

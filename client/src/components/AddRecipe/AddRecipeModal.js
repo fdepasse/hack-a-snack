@@ -75,8 +75,6 @@ export default function AddRecipeModal({ history }) {
     }
   }
 
-
-
   return <main className='column'>
     <div className='column is-flex is-flex-direction-column is-align-items-center'>
       <h1 className='title is-1'>Recipes</h1>
@@ -103,18 +101,6 @@ export default function AddRecipeModal({ history }) {
             />
           </div>
         </div>
-
-        {/* <div className='field'>
-          <label className='label'>Image URL</label>
-          <div className='control'>
-            <input className='input'
-              type="text"
-              value={formData.image}
-              onChange={handleChange}
-              name={'image'}
-            />
-          </div>
-        </div> */}
 
         <div className='field'>
           <label className='label'>Method or Link to Method</label>
@@ -177,41 +163,47 @@ export default function AddRecipeModal({ history }) {
           </div>
         </div>
 
-        <label className="label">Health Labels</label>
-        <Select
-          defaultValue={[]}
-          isMulti
-          name="healthLabels"
-          options={Health}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={(healthLabels) => updateFormData({ ...formData, healthLabels })}
-          value={formData.healthLabels}
-        />
+        <div className='field'>
+          <label className="label">Health Labels</label>
+          <Select
+            defaultValue={[]}
+            isMulti
+            name="healthLabels"
+            options={Health}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(healthLabels) => updateFormData({ ...formData, healthLabels })}
+            value={formData.healthLabels}
+          />
+        </div>
 
-        <label className="label">Diet</label>
-        <Select
-          defaultValue={[]}
-          isMulti
-          name="healthLabels"
-          options={Diet}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={(diet) => updateFormData({ ...formData, diet })}
-          value={formData.diet}
-        />
+        <div className='field'>
+          <label className="label">Diet</label>
+          <Select
+            defaultValue={[]}
+            isMulti
+            name="healthLabels"
+            options={Diet}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(diet) => updateFormData({ ...formData, diet })}
+            value={formData.diet}
+          />
+        </div>
 
-        <label className="label">Allergens</label>
-        <Select
-          defaultValue={[]}
-          isMulti
-          name="allergens"
-          options={Allergens}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          onChange={(allergens) => updateFormData({ ...formData, allergens })}
-          value={formData.allergens}
-        />
+        <div className='field'>
+          <label className="label">Allergens</label>
+          <Select
+            defaultValue={[]}
+            isMulti
+            name="allergens"
+            options={Allergens}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(allergens) => updateFormData({ ...formData, allergens })}
+            value={formData.allergens}
+          />
+        </div>
 
 
         <div className='field'>

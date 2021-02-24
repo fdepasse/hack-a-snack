@@ -22,6 +22,14 @@ nav.navbar {
   max-height: 3.75rem;
 }
 
+.column {
+  align-items: stretch;
+}
 
-
-
+// div.column {
+//   max-height: 750px;
+// }
+.slideImage{
+  height: 200px;
+  width: 250px;
+}
