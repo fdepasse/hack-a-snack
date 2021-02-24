@@ -12,8 +12,8 @@ import SingleRecipe from './components/SingleRecipe'
 import UserRecipes from './components/UserRecipes'
 import SearchResults from './components/SearchResults'
 import Footer from './components/Footer'
-import ImageUpload from './components/ImageUpload'
 import AddRecipeModal from './components/AddRecipe/AddRecipeModal'
+
 
 
 import 'bulma'
@@ -27,12 +27,11 @@ const App = () => (
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/logout" component={Logout} />
-      <Route exact path="/myaccount" component={MyAccount} />
+      <Route exact path="/myaccount/" component={MyAccount} />
       <Route exact path="/recipes" component={AllRecipes} />
       <Route exact path="/recipes/:recipeId" component={SingleRecipe} />
       <Route exact path="/userrecipes/:user" component={UserRecipes} />
       <Route exact path="/search" component={SearchResults} />
-      <Route exact path="/image" component={ImageUpload} />
       <Route exact path="/modal" component={AddRecipeModal} />
     </Switch>
     <Footer />

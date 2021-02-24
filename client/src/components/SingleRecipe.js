@@ -3,12 +3,17 @@ import axios from 'axios'
 import PostReview from './PostReview'
 import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
+import EditRecipeModal from './EditRecipe/EditRecipeModal'
+import { useSpeechSynthesis } from 'react-speech-kit'
+
 
 
 const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
+  const { speak, cancel  } = useSpeechSynthesis()
+
 
   // console.log(match.params.user, 'line 13')
   async function fetchRecipe() {
@@ -49,6 +54,7 @@ const SingleRecipe = ({ match, history }) => {
         <div className="column is-two-fifths is-flex">
  
             <PostReview recipe={recipe} fetchRecipe={fetchRecipe} handleSaveRecipe={handleSaveRecipe}/>
+            <EditRecipeModal />
        
         </div>
         <div className="column is-three-fifths is-flex is-flex-direction-column">
@@ -80,6 +86,14 @@ const SingleRecipe = ({ match, history }) => {
             <h5 className="title">{'Method URL: '}</h5>
             <p className="subtitle box">{recipe.linkOrMethod}</p>
           </div>
+        </div>
+        <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
+              Speak the recipe to me</button>
+        <button className="button is-light" onClick={cancel}>Stop</button>
+        <div className="block box">
+          <h5 className="title">{'Method URL: '}</h5>
+          <p className="subtitle box">{recipe.linkOrMethod}</p>
+          
         </div>
       </div>
     </div>

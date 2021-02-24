@@ -1,6 +1,6 @@
 // import axios from 'axios'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { getLoggedInUserId } from './lib/auth'
 
@@ -11,7 +11,7 @@ const Navbar = ({ history }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    history.push('/')
+    history.push('/logout')
   }
   const loggedIn = getLoggedInUserId()
 
