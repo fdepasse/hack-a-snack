@@ -13,9 +13,6 @@ export default function UpdateProfileModal({ history }) {
     passwordConfirmation: ''
   })
 
-  const user = getLoggedInUserId
-  console.log(user)
-
 
   function handleChange(event) {
     const name = event.target.name
