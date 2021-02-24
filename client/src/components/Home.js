@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Slider from 'react-slick'
 import ShuffleCarousel from './randomShuffle'
 
 const Home = ({ history }) => {
   const [recipeData, updateRecipeData] = useState({})
   const [searchData, updateSearchData] = useState('')
-  const [randomRecipes, updateRandomRecipes] = useState([])
-  const promises = []
+ 
 
   useEffect(() => {
     axios.get('/api/random-recipe')
@@ -25,22 +23,9 @@ const Home = ({ history }) => {
       console.log(err)
     }
   }
+  
 
 
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    autoplay: true
-  }
-
-  const sliderStyle = {
-    width: '100vh',
-    height: '25%',
-  }
 
   return <main>
     <div className="columns is-centered is-multiline">

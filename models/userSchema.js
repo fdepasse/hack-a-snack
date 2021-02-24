@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import mongooseHidden from 'mongoose-hidden'
 import uniqueValidator from 'mongoose-unique-validator'
 
-//!! install below backage for this too work
+//!! install below backage for this to work
 // import isEmail from 'validator/lib/isEmail.js'
 // //npm install validator 
 

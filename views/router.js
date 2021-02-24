@@ -27,7 +27,7 @@ router.route('/recipes/user/:user')
   .get(recipes.getRecipesByUser)
 
 router.route('/user/:userId')
-  .get(secureRoute, user.getUser)
+  .get(user.getUser)
   .put(secureRoute, user.updateProfile)
 
 router.route('/myrecipes/:recipeId')

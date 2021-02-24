@@ -7,44 +7,9 @@ import { Link } from 'react-router-dom'
 export default function ShuffleCarousel() {
   const [recipeData, updateRecipeData] = useState([])
   const [loading, updateLoading] = useState(true)
-
-  // const promises = []
-
-  // async function getMoreRecipes() {
-
-  //   for (let i = 0; i <= 9; i++) {
-  //     const timeoutNumber = 50 * i
-  //     promises.push(new Promise((resolve) => {
-  //       setTimeout(() => {
-  //         axios.get('/api/random-recipe')
-  //           .then(({ data }) => {
-  //             const randomRecipe = {
-  //               id: data._id,
-  //               image: data.image,
-  //             }
-  //             resolve(randomRecipe)
-  //           })
-
-  //       }, timeoutNumber)
-  //     }))
-  //     // promises.push(recipeData)
-  //     // console.log(recipeData)
-  //   }
-  //   return Promise.all(promises).then((values) =>{
-  //     updateRecipeData(values)
-  //     updateLoading(false)
-
-  //   })
-
-  // }
-
-  // useEffect(async () => {
-  //   await getMoreRecipes()
-  // }, [])
-
   const dataArray = []
 
-//getting one random recipe
+  //getting one random recipe
   async function getThoseRecipes() {
     try {
       const { data } = await axios.get('/api/random-recipe')
@@ -55,7 +20,7 @@ export default function ShuffleCarousel() {
     }
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     for (let i = 0; i <= 9; i++) {
       getThoseRecipes()//calls the func x 9
       //add some code here to check if we already have the recipe in the array STRETCH 
@@ -75,9 +40,9 @@ export default function ShuffleCarousel() {
   }
 
   const sliderStyle = {
-    // width: '66vw',
     height: '25%',
   }
+  
   if (loading) {
     return <h1 className="subtitle">Loading...</h1>
   }
