@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import PostReview from './PostReview'
+import Rating from 'react-rating'
 
 
 const SingleRecipe = ({ match, history }) => {
@@ -8,17 +9,20 @@ const SingleRecipe = ({ match, history }) => {
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
 
+
+
   async function fetchRecipe() {
-    console.log('fetching recipe')
+    // console.log('fetching recipe')
     try {
-      console.log('inside try')
+      // console.log('inside try')
       const { data } = await axios.get(`/api/recipes/${recipeId}`)
       updateRecipe(data)
-      console.log('state updated', data)
+      // console.log('state updated', data)
     } catch (err) {
       console.log(err)
     }
   }
+
 
   useEffect(() => {
     fetchRecipe()
@@ -32,16 +36,34 @@ const SingleRecipe = ({ match, history }) => {
   //   history.push('/recipes')
   // }
 
+
   if (!recipe.user) {
     return null
   }
+
+
+  function averageRating() {
+    // Access the review array, filter to get an array of ratings excluding falsy value
+    // Map over the filtered array to get an array of valid ratings
+    const ratingsArray = recipe.review.filter(recipe => recipe.rating).map(recipe => recipe.rating)
+    console.log(ratingsArray)
+    // Calculate the sum of all ratings
+    const ratingsSum = ratingsArray.reduce((acc, rating) => acc + rating, 0)
+    console.log(ratingsSum)
+    // Calculate the average rating
+    const average = ratingsSum / ratingsArray.length
+    console.log(average)
+    // Round the average rating to nearest 0.5
+    return Math.round(average * 2) / 2
+  }
+  console.log(averageRating())
 
   return <main>
     <div className="columns box is-four-fifths is-flex" id="singlerecipebox">
       <div className="column is-two-fifths is-flex">
         <div className="block box">
           <img src={recipe.image} alt={recipe.recipeName} />
-          <PostReview recipe={recipe} fetchRecipe={fetchRecipe}/>
+          <PostReview recipe={recipe} fetchRecipe={fetchRecipe} />
         </div>
       </div>
       <div className="column is-three-fifths is-flex is-flex-direction-column">
@@ -50,7 +72,15 @@ const SingleRecipe = ({ match, history }) => {
           <h2 className="subtitle">{`Created by: ${recipe.user.username}`}</h2>
         </div>
         <div className="block box">
-          <h5 className="subtitle">{'Rating: '}</h5>
+          <h5 className="subtitle">{recipe.review.length} reviews</h5>
+          <h5 className="subtitle">Average Rating: </h5>
+          <Rating
+            start={0}
+            stop={5}
+            initialRating={averageRating()}
+            readonly={true}
+            fractions={2}
+          />
         </div>
         <div className="block box">
           <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
@@ -65,7 +95,7 @@ const SingleRecipe = ({ match, history }) => {
         </div>
         <div className="block box">
           <h5 className="title">{'Method URL: '}</h5>
-          <p className="subtitle box">{recipe.linkOrMethod}</p>
+          <a className="subtitle" href={recipe.linkOrMethod} target="_blank" rel="noreferrer">{recipe.linkOrMethod}</a>
         </div>
       </div>
     </div>

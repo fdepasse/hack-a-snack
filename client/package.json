@@ -33,11 +33,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-multivalue-text-input": "^0.6.2",
+    "react-rating": "^2.0.5",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.1.0",
     "react-slick": "^0.28.0",
     "react-speech": "^1.0.2",
     "react-speech-kit": "^3.0.1",
+    "react-stars": "^2.2.5",
     "slick-carousel": "^1.8.1",
     "speak-tts": "^2.0.8",
     "speech": "^0.2.1"
