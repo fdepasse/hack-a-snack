@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-// import Slider from 'react-slick'
+import ShuffleCarousel from './randomShuffle'
 
 const Home = ({ history }) => {
   const [recipeData, updateRecipeData] = useState({})
   const [searchData, updateSearchData] = useState('')
-  // const [randomRecipes, updateRandomRecipes] = useState([])
-  // const promises = []
+ 
 
   useEffect(() => {
     axios.get('/api/random-recipe')
@@ -24,31 +23,9 @@ const Home = ({ history }) => {
       console.log(err)
     }
   }
+  
 
-  // function shuffleRecipes() {
-  //   for (let i = 0; i <= 10; i++) {
-  //     axios.get('/api/random-recipe')
-  //       .then(({ data }) => {
-  //         updateRandomRecipes(data)
-  //       })
-  //     promises.push(randomRecipes)
-  //   }
-  // }
-  // shuffleRecipes()
 
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 6,
-  //   slidesToScroll: 6,
-  //   autoplay: true
-  // }
-
-  // const sliderStyle = {
-  //   width: '100vh',
-  //   height: '25%',
-  // }
 
   return <main>
     <div className="columns is-centered is-multiline">
@@ -94,15 +71,9 @@ const Home = ({ history }) => {
         </div>
       </section>
     </div>
-    {/* <section className="section">
-      <Slider {...settings} style={sliderStyle}>
-        {promises.map(recipe => {
-          return <Link key={recipe._id} to={`/recipes/${recipe._id}`}>
-            <img className='slideImage' src={recipe.image} alt={recipe.recipeName} />
-          </Link>
-        })}
-      </Slider>
-    </section> */}
+    <section className="section">
+      <ShuffleCarousel />
+    </section>
   </main>
 }
 

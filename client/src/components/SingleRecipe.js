@@ -14,6 +14,7 @@ const SingleRecipe = ({ match, history }) => {
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
   const { speak, cancel } = useSpeechSynthesis()
+  const userId = match.params.user
 
 
   // console.log(match.params.user, 'line 13')
