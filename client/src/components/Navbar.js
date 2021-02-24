@@ -1,6 +1,6 @@
 // import axios from 'axios'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { getLoggedInUserId } from './lib/auth'
 
@@ -11,7 +11,7 @@ const Navbar = ({ history }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    history.push('/')
+    history.push('/logout')
   }
   const loggedIn = getLoggedInUserId()
 
@@ -41,6 +41,7 @@ const Navbar = ({ history }) => {
         <div className="navbar-item">
           <div className="menu-item">
             {!loggedIn && <Link to="/register" className="button is-light">Register</Link>}
+            {<Link to="/recipes" className="button is-light">All Recipes</Link>}
             {loggedIn && <Link to="/myaccount" className="button is-dark">My Account</Link>}
             {loggedIn && <Link to="/modal" className="button is-light">Post a Recipe</Link>}
             {!loggedIn && <Link to="/login" className="button is-dark">Login</Link>}
