@@ -34,10 +34,9 @@ const SingleRecipe = ({ match, history }) => {
   }
 
   async function handleSaveRecipe(recipeId) {
-    await axios.delete(`/api/myrecipes/${recipeeid}`, {
+    await axios.put(`/api/myrecipes/${recipeId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-    props.fetchRecipe()
   }
 
   if (!recipe.user) {
