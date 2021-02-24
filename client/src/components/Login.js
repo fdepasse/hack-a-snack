@@ -13,6 +13,7 @@ export default function Login({ history }) {
     updateFormData({ ...formData, [name]: value })
   }
 
+
   async function handleSubmit(event) {
     event.preventDefault()
     try {
@@ -22,7 +23,7 @@ export default function Login({ history }) {
         console.log(localStorage)
         console.log(data)
       }
-      history.push('/recipes')
+      history.push('/')
     } catch (err) {
       alert(err.response.data.message)
       // console.log(err.response.data)

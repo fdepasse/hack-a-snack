@@ -32,7 +32,8 @@ export default function AddRecipeModal({ history }) {
   }
 
   // //! This will handle the image upload to Cloudinary
-  function handleUpload() {
+  function handleUpload(event) {
+    event.preventDefault()
     window.cloudinary.createUploadWidget(
       {
         cloudName: 'stressipes',
@@ -212,7 +213,13 @@ export default function AddRecipeModal({ history }) {
           value={formData.allergens}
         />
 
-        <button className="button" onClick={handleUpload}>Click to upload an image</button>
+
+        <div className='field'>
+          <label className='label'>Add an Image</label>
+          <div className='control'>
+            <button className="button" onClick={handleUpload}>Click to upload an image</button>
+          </div>
+        </div>
         <div className="control">
           <button className="button is-link">Create a recipe</button>
         </div>

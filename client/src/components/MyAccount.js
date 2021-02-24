@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
+import UpdateProfileModal from './UpdateProfile'
 
 export default function myAccount({ match }) {
 
@@ -50,7 +51,8 @@ export default function myAccount({ match }) {
   return <main className='is-flex'>
     <section className='column is-two-thirds'>
       <h1 className='title is-2'>My Account</h1>
-      <button className='button is-danger is-rounded'>💡 Edit my account</button>
+      <UpdateProfileModal />
+      {/* <EditRecipeModal /> */}
       <div>
         <h2 className='title is-4'>Saved Recipes</h2>
         <Slider {...settings} style={sliderStyle}>

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import PostReview from './PostReview'
+import EditRecipeModal from './EditRecipe/EditRecipeModal'
+import { useSpeechSynthesis } from 'react-speech-kit'
+
 
 
 const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
+  const { speak, cancel  } = useSpeechSynthesis()
+
 
   async function fetchRecipe() {
     console.log('fetching recipe')
@@ -41,7 +46,8 @@ const SingleRecipe = ({ match, history }) => {
       <div className="column is-two-fifths is-flex">
         <div className="block box">
           <img src={recipe.image} alt={recipe.recipeName} />
-          <PostReview recipe={recipe} fetchRecipe={fetchRecipe}/>
+          <PostReview recipe={recipe} fetchRecipe={fetchRecipe} />
+          <EditRecipeModal />
         </div>
       </div>
       <div className="column is-three-fifths is-flex is-flex-direction-column">
@@ -63,9 +69,13 @@ const SingleRecipe = ({ match, history }) => {
             }
           </div>
         </div>
+        <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
+              Speak the recipe to me</button>
+        <button className="button is-light" onClick={cancel}>Stop</button>
         <div className="block box">
           <h5 className="title">{'Method URL: '}</h5>
           <p className="subtitle box">{recipe.linkOrMethod}</p>
+          
         </div>
       </div>
     </div>
