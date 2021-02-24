@@ -4,15 +4,14 @@ import axios from 'axios'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 import { getLoggedInUserId } from './lib/auth'
-import ShuffleCarousel from './randomShuffle'
 import UpdateProfileModal from './UpdateProfile'
+import GetSuggested from './SuggestedRecipes'
 
 export default function myAccount({ match }) {
-
-  const token = localStorage.getItem('token')
   const [savedRecipes, updateSaved] = useState([])
   const [postedRecipes, updatePosted] = useState([])
   const [loading, updateLoading] = useState(true)
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
     async function getUserRecipes() {
@@ -30,11 +29,12 @@ export default function myAccount({ match }) {
     getUserRecipes()
   }, [])
 
+
   if (loading) {
     return <h1 className="subtitle">Loading...</h1>
   }
-  
-  // console.log(savedRecipes)
+
+  // console.log('savedRecipes', savedRecipes)
 
   const settings = {
     dots: true,
@@ -42,23 +42,47 @@ export default function myAccount({ match }) {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true
+    autoplay: true,
+    // cssEase: 'linear',
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   }
 
   const sliderStyle = {
-    // width: '66vw',
     height: '25%',
   }
-  // console.log(postedRecipes)
 
-
-  return <main className='is-flex'>
+  return <main className='is-flex accountContainer columns is-desktop'>
     <section className='column is-two-thirds'>
-      <h1 className='title is-2'>My Account</h1>
-      <UpdateProfileModal />
+      <h1 className='title is-2 has-text-centered'>My Account</h1>
       {/* <EditRecipeModal /> */}
       <div>
         <h2 className='title is-4'>Saved Recipes</h2>
+        <hr/>
         <Slider {...settings} style={sliderStyle}>
           {savedRecipes.map(saved => {
             return <Link key={saved._id} to={`/recipes/${saved._id}`}>
@@ -69,6 +93,7 @@ export default function myAccount({ match }) {
       </div>
       <div>
         <h2 className='title is-4'>Posted Recipes</h2>
+        <hr/>
         <Slider {...settings} style={sliderStyle}>
           {postedRecipes.map(posted => {
             return <Link key={posted._id} to={`/recipes/${posted._id}`}>
@@ -77,11 +102,12 @@ export default function myAccount({ match }) {
           })}
         </Slider>
       </div>
+      <UpdateProfileModal />
     </section>
     {/* <button className='is-button'>Add a recipe</button> */}
-    <section className='column is-one-third'>
+    <section className='column is-one-third suggested'>
       <h2 className='title is-4'>Suggested Recipes</h2>
-      <ShuffleCarousel />
+      <GetSuggested />
     </section>
   </main>
 }

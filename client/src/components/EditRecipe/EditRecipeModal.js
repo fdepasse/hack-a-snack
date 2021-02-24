@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
 // import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-import Health from './Health'
+import Health from '../AddRecipe/Health'
 import Select from 'react-select'
-import Diet from './Diet'
-import Allergens from './Allergens'
+import Diet from '../AddRecipe/Diet'
+import Allergens from '../AddRecipe/Allergens'
 
 
 const EditRecipeModal = (props) => {
   const [modal, showModal] = useState(false)
   const recipeId = props.recipeId
   const token = localStorage.getItem('token')
-  console.log(recipeId)
-  console.log(token)
-  console.log(props.history)
   const history = props.history
 
   const [formData, updateFormData] = useState({
@@ -37,15 +34,15 @@ const EditRecipeModal = (props) => {
     history.push('/recipes')
   }
 
-  function handleChange(event) {
-    const name = event.target.name
-    const value = event.target.value
-
-    updateFormData({
-      ...formData,
-      [name]: value
+  // ! Get request to populate form fields
+  useEffect(() => {
+    axios.get(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
     })
-  }
+      .then(({ data }) => {
+        updateFormData(data)
+      })
+  }, [])
 
   // //! This will handle the image upload to Cloudinary
   function handleUpload(event) {
@@ -69,6 +66,18 @@ const EditRecipeModal = (props) => {
   }
 
 
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+
+    updateFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  console.log('history ' + history)
+
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -80,14 +89,18 @@ const EditRecipeModal = (props) => {
     }
 
     try {
-      const { data } = await axios.post('/api/recipes', newFormData, {
+      const { data } = await axios.put(`/api/recipes/${recipeId}`, newFormData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
-      history.push(`/recipes/${data._id}`)
+
+      console.log('2  ' + data)
     } catch (err) {
       console.log(err.response.data)
     }
+    props.fetchRecipe()
+    showModal(!modal)
+
+
   }
 
 
@@ -103,7 +116,7 @@ const EditRecipeModal = (props) => {
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Update your profile...</p>
+          <p className="modal-card-title">Update this recipe...</p>
           <button className="delete" aria-label="close" onClick={() => showModal(!modal)} />
         </header>
 
@@ -111,7 +124,7 @@ const EditRecipeModal = (props) => {
           <main className='column'>
             <div className='column is-flex is-flex-direction-column is-align-items-center'>
               <h1 className='title is-1'>Edit Yo Recipes</h1>
-              <form className='field' onSubmit={handleSubmit}>
+              <form className='field' >
                 <div>
                   <label className='label'>Recipe Name</label>
                   <div className='control'>
@@ -240,7 +253,6 @@ const EditRecipeModal = (props) => {
                   </div>
                 </div>
                 <div className="control">
-                  <button className="button is-link">Create a recipe</button>
                 </div>
               </form>
             </div>
@@ -248,6 +260,7 @@ const EditRecipeModal = (props) => {
         </section>
         <footer className="modal-card-foot">
           <button className="button" onClick={() => showModal(!modal)}>Cancel</button>
+          <button className="button is-link" onClick={handleSubmit} >Update your recipe</button>
         </footer>
       </div>
     </div>

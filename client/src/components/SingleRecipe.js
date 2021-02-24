@@ -15,6 +15,7 @@ const SingleRecipe = ({ match, history }) => {
   const ingredientsList = recipe.ingredients
   const token = localStorage.getItem('token')
   const { speak, cancel } = useSpeechSynthesis()
+  const userId = match.params.user
 
   async function fetchRecipe() {
 

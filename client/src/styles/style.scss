@@ -5,6 +5,9 @@
   justify-content: center;
 }
 
+.footer {
+  background-color: black;
+}
 .menu-item {
   display: inline;
 }
@@ -32,4 +35,16 @@ nav.navbar {
 .slideImage{
   height: 200px;
   width: 250px;
+  border-radius: 20%;
+  background-color: grey;
+}
+.suggested{
+  border-left: whitesmoke 3px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accountContainer{
+  padding: 20px;
 }

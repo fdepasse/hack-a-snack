@@ -43,9 +43,6 @@ export default function Register({ history }) {
     ).open()
   }
 
-
-
-
   function handleSubmit(event) {
     event.preventDefault()
     try {
