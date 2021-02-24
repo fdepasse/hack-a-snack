@@ -58,7 +58,7 @@ const Home = ({ history }) => {
           <Link className="card" to={`/recipes/${recipeData._id}`}>
             <div className="card-image">
               <figure className="image is-4by3">
-                <img src={recipeData.image} alt={recipeData.recipeName} />
+                <img src={recipeData.image} alt={recipeData.recipeName} style={{ borderRadius: '12px' }}/>
               </figure>
             </div>
             <div className="media">

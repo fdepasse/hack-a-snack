@@ -27,26 +27,41 @@ export default function PostReview(props) {
     props.fetchRecipe()
   }
 
-  return <div className=" block box is-flex-direction-row">
+  async function handleSaveRecipe(recipeId, authToken) {
+    console.log(authToken, 'line 31')
+    try {
+      await axios.put(`/api/myrecipes/${recipeId}`, {}, {
+        headers: { Authorization: `Bearer ${authToken}` }
+      })
+      alert('saved to my collection')
+      fetchRecipe()
+    } catch(err) {
+      console.log(err)
+    } 
 
-    <div className="media-content" style={{
+  }
+  return <div className="block box">
+
+    <article className="media" style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center'
     }}>
-      <img src={recipes.image} alt={recipes.recipeName} style={{ borderRadius: '12px' }} />
-      {isCreator(recipes.user._id) && <nav className="level is-mobile">
-        <div className="level-right">
-          {/* <button
-            className="level-item"
-            className="fas fa-heart"
-            onClick={() => handleSaveRecipe(recipe._id)}>
-          </button> */}
+      <div className="media-content">
+        <div className="content">
+          <figure className="image is-640x640">
+          <img src={recipes.image} alt={recipes.recipeName} style={{ borderRadius: '12px' }} />
+          </figure>
+          <nav className="level is-mobile level-right">
+            <div className="level-right">
+              <button className="level-item" onClick={() => handleSaveRecipe(props.recipeId, token)}>❤️</button>
+            </div>
+          </nav>
         </div>
-      </nav>}
-    </div>
-
+      </div>
+    </article>
+  
 
     <h4 className="title">{'Reviews: '}</h4>
     <div className="subtitle box">{recipes.review && recipes.review.map(review => {

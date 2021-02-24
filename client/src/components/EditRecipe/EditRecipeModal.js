@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
+// import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import Health from './Health'
 import Select from 'react-select'
 import Diet from './Diet'
 import Allergens from './Allergens'
-import { Link } from 'react-router-dom'
 
 
-export default function EditRecipeModal({ history }) {
+const EditRecipeModal = (props) => {
   const [modal, showModal] = useState(false)
+  const recipeId = props.recipeId
+  const token = localStorage.getItem('token')
+  console.log(recipeId)
+  console.log(token)
+  console.log(props.history)
+  const history = props.history
 
   const [formData, updateFormData] = useState({
     recipeName: '',
@@ -24,8 +30,12 @@ export default function EditRecipeModal({ history }) {
     allergens: []
   })
 
-
-
+  async function handleDelete(recipeId) {
+    await axios.delete(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    history.push('/recipes')
+  }
 
   function handleChange(event) {
     const name = event.target.name
@@ -61,7 +71,6 @@ export default function EditRecipeModal({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    const token = localStorage.getItem('token')
 
     const newFormData = {
       ...formData,
@@ -82,15 +91,13 @@ export default function EditRecipeModal({ history }) {
   }
 
 
-
-
-
   return <>
-    <div className="container">
-
-      <button className="button is-danger" onClick={() => showModal(!modal)}>Edit yo account!  👩‍💻 </button>
-
-    </div>
+  
+        <div className="buttons has-addons is-right">
+          <button className="button is-dark" onClick={() => showModal(!modal)}>Edit</button>
+          <button className="button is-dark" onClick={() => handleDelete(recipeId)}>Delete</button>
+        </div>
+      
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
 
       <div className="modal-background" />
@@ -256,3 +263,4 @@ export default function EditRecipeModal({ history }) {
 
 }
 
+export default EditRecipeModal
