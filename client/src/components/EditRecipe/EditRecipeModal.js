@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
+// import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-import Health from './Health'
+import Health from '../AddRecipe/Health'
 import Select from 'react-select'
-import Diet from './Diet'
-import Allergens from './Allergens'
-import { Link } from 'react-router-dom'
+import Diet from '../AddRecipe/Diet'
+import Allergens from '../AddRecipe/Allergens'
 
 
-export default function EditRecipeModal({ history }) {
+const EditRecipeModal = (props) => {
   const [modal, showModal] = useState(false)
+  const recipeId = props.recipeId
+  const token = localStorage.getItem('token')
+  const history = props.history
 
   const [formData, updateFormData] = useState({
     recipeName: '',
@@ -24,18 +27,22 @@ export default function EditRecipeModal({ history }) {
     allergens: []
   })
 
-
-
-
-  function handleChange(event) {
-    const name = event.target.name
-    const value = event.target.value
-
-    updateFormData({
-      ...formData,
-      [name]: value
+  async function handleDelete(recipeId) {
+    await axios.delete(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
     })
+    history.push('/recipes')
   }
+
+  // ! Get request to populate form fields
+  useEffect(() => {
+    axios.get(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(({ data }) => {
+        updateFormData(data)
+      })
+  }, [])
 
   // //! This will handle the image upload to Cloudinary
   function handleUpload(event) {
@@ -59,9 +66,20 @@ export default function EditRecipeModal({ history }) {
   }
 
 
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+
+    updateFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+  console.log('history ' + history)
+
   async function handleSubmit(event) {
     event.preventDefault()
-    const token = localStorage.getItem('token')
 
     const newFormData = {
       ...formData,
@@ -71,32 +89,34 @@ export default function EditRecipeModal({ history }) {
     }
 
     try {
-      const { data } = await axios.post('/api/recipes', newFormData, {
+      const { data } = await axios.put(`/api/recipes/${recipeId}`, newFormData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
-      history.push(`/recipes/${data._id}`)
+
+      console.log('2  ' + data)
     } catch (err) {
       console.log(err.response.data)
     }
+    props.fetchRecipe()
+    showModal(!modal)
+
+
   }
 
 
-
-
-
   return <>
-    <div className="container">
-
-      <button className="button is-danger" onClick={() => showModal(!modal)}>Edit yo account!  👩‍💻 </button>
-
-    </div>
+  
+        <div className="buttons has-addons is-right">
+          <button className="button is-dark" onClick={() => showModal(!modal)}>Edit</button>
+          <button className="button is-dark" onClick={() => handleDelete(recipeId)}>Delete</button>
+        </div>
+      
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
 
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Update your profile...</p>
+          <p className="modal-card-title">Update this recipe...</p>
           <button className="delete" aria-label="close" onClick={() => showModal(!modal)} />
         </header>
 
@@ -104,7 +124,7 @@ export default function EditRecipeModal({ history }) {
           <main className='column'>
             <div className='column is-flex is-flex-direction-column is-align-items-center'>
               <h1 className='title is-1'>Edit Yo Recipes</h1>
-              <form className='field' onSubmit={handleSubmit}>
+              <form className='field' >
                 <div>
                   <label className='label'>Recipe Name</label>
                   <div className='control'>
@@ -233,7 +253,6 @@ export default function EditRecipeModal({ history }) {
                   </div>
                 </div>
                 <div className="control">
-                  <button className="button is-link">Create a recipe</button>
                 </div>
               </form>
             </div>
@@ -241,6 +260,7 @@ export default function EditRecipeModal({ history }) {
         </section>
         <footer className="modal-card-foot">
           <button className="button" onClick={() => showModal(!modal)}>Cancel</button>
+          <button className="button is-link" onClick={handleSubmit} >Update your recipe</button>
         </footer>
       </div>
     </div>
@@ -256,3 +276,4 @@ export default function EditRecipeModal({ history }) {
 
 }
 
+export default EditRecipeModal

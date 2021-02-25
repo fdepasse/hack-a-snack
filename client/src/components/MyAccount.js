@@ -31,6 +31,7 @@ export default function myAccount({ match }) {
     getUserRecipes()
   }, [])
 
+
   if (loading) {
     return <h1 className="subtitle">Loading...</h1>
   }

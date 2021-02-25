@@ -3,15 +3,18 @@ import axios from 'axios'
 import PostReview from './PostReview'
 import Rating from 'react-rating'
 import { Link } from 'react-router-dom'
-import { isCreator } from '../lib/auth'
 import EditRecipeModal from './EditRecipe/EditRecipeModal'
 import { useSpeechSynthesis } from 'react-speech-kit'
 import { getLoggedInUserId } from './lib/auth'
+import { isCreator } from '../lib/auth'
+import { withRouter } from 'react-router-dom'
+
 
 const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
+  const token = localStorage.getItem('token')
   const { speak, cancel } = useSpeechSynthesis()
   const userId = match.params.user
 
@@ -69,21 +72,16 @@ const SingleRecipe = ({ match, history }) => {
       <div className="columns">
 
         <div className="column is-two-fifths is-flex">
-          <PostReview recipe={recipe} fetchRecipe={fetchRecipe} /*handleSaveRecipe={handleSaveRecipe}*/ />
-          <EditRecipeModal />
+          <PostReview recipe={recipe} recipeId={recipeId} fetchRecipe={fetchRecipe} />
         </div>
 
         <div className="column is-three-fifths is-flex is-flex-direction-column">
           <div className="block box">
-            {isCreator(recipe.user._id) &&
-              <div className="buttons has-addons is-right">
-                <button className="button is-dark" onClick={handleDelete}>Delete</button>
-                <Link className="button is-dark">Edit</Link>
-              </div>
-            }
+          {isCreator(recipe.user._id) && <EditRecipeModal recipeId={recipeId} history={history}/> }
             <h1 className="title">{recipe.recipeName}</h1>
             <Link to={correctUserPage()} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
           </div>
+
           <div className="block box">
             <h5 className="subtitle">{recipe.review.length} reviews</h5>
             <h5 className="subtitle">Average Rating: </h5>
@@ -98,53 +96,27 @@ const SingleRecipe = ({ match, history }) => {
           <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
           <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
           <div className="box">
+          <div className="buttons has-addons is-right">
+              <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
+                Serenade me with the recipe</button>
+              <button className="button is-light" onClick={cancel}>Stop</button>
+            </div>
+ 
             <h5 className="subtitle">{'Ingredients: '}</h5>
             {ingredientsList.map((ingredient, index) => {
               return <p key={index}>{ingredient}</p>
             })
             }
           </div>
-          <h5 className="title">{'Method URL: '}</h5>
-          <p className="subtitle box">{recipe.linkOrMethod}</p>
+          <div className="box">
+            <h5 className="title">{'Method URL: '}</h5>
+            <a className="subtitle" href={recipe.linkOrMethod} target="_blank" rel="noreferrer">{recipe.linkOrMethod}</a>
+          </div>
         </div>
-        <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
-          Speak the recipe to me</button>
-        <button className="button is-light" onClick={cancel}>Stop</button>
-        <div className="block box">
-          <h5 className="title">{'Method URL: '}</h5>
-          <a className="subtitle" href={recipe.linkOrMethod} target="_blank" rel="noreferrer">{recipe.linkOrMethod}</a>
-        </div>
-
       </div>
     </div>
   </main >
 }
 
-{/* <div className="column is-three-fifths is-flex is-flex-direction-column">
-
-          <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
-          <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
-          <div className="box">
-            <h5 className="subtitle">{'Ingredients: '}</h5>
-            {ingredientsList.map((ingredient, index) => {
-              return <p key={index}>{ingredient}</p>
-            })
-            }
-          </div>
-
-          <h5 className="title">{'Method URL: '}</h5>
-          <p className="subtitle box">{recipe.linkOrMethod}</p>
-        </div>
-      </div>
-      <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
-        Speak the recipe to me</button>
-      <button className="button is-light" onClick={cancel}>Stop</button>
-      <div className="block box">
-        <h5 className="title">{'Method URL: '}</h5>
-        <a className="subtitle" href={recipe.linkOrMethod} target="_blank" rel="noreferrer">{recipe.linkOrMethod}</a>
-      </div>
- */}
-
-
-export default SingleRecipe
+export default withRouter(SingleRecipe)
 
