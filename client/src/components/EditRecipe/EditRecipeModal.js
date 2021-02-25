@@ -110,7 +110,6 @@ const EditRecipeModal = (props) => {
           <button className="button is-dark" onClick={() => showModal(!modal)}>Edit</button>
           <button className="button is-dark" onClick={() => handleDelete(recipeId)}>Delete</button>
         </div>
-      
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
 
       <div className="modal-background" />
