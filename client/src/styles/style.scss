@@ -1,9 +1,4 @@
-#singlerecipebox {
-  width: 90%;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-}
+// @import '~pretty-checkbox/src/pretty-checkbox.scss';
 
 .footer {
   background-color: black;
@@ -35,7 +30,7 @@ nav.navbar {
 .slideImage{
   height: 200px;
   width: 250px;
-  border-radius: 20%;
+  border-radius: 12px;
   background-color: grey;
 }
 .suggested{
@@ -48,3 +43,16 @@ nav.navbar {
 .accountContainer{
   padding: 20px;
 }
+
+#singlerecipebox {
+  width: 90%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  max-height: 1500px !important;
+}
+
+#columnleft {
+  max-height: 1500px !important;
+}
+

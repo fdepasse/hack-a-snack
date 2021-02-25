@@ -7,6 +7,7 @@ import EditRecipeModal from './EditRecipe/EditRecipeModal'
 import { useSpeechSynthesis } from 'react-speech-kit'
 import { isCreator } from '../lib/auth'
 import { withRouter } from 'react-router-dom'
+import { getLoggedInUserId } from '../lib/auth'
 
 
 const SingleRecipe = ({ match, history }) => {
@@ -15,7 +16,8 @@ const SingleRecipe = ({ match, history }) => {
   const ingredientsList = recipe.ingredients
   const token = localStorage.getItem('token')
   const { speak, cancel } = useSpeechSynthesis()
-  const userId = match.params.user
+  const userId = getLoggedInUserId()
+  console.log(userId, 'LINE 19')
 
   async function fetchRecipe() {
 
@@ -31,9 +33,6 @@ const SingleRecipe = ({ match, history }) => {
   useEffect(() => {
     fetchRecipe()
   }, [])
-
-  console.log(token, 'line 34')
-  console.log(recipeId)
 
 
   if (!recipe.user) {
@@ -55,17 +54,17 @@ const SingleRecipe = ({ match, history }) => {
     // Round the average rating to nearest 0.5
     return Math.round(average * 2) / 2
   }
-  console.log(averageRating())
 
-  return <main className="is-flex align-items-center">
-    <div className="block box" id="singlerecipebox">
+  return <main className="hero is-fullheight is-center">
+    <div className="hero-body">
+    <div className="container block box" id="singlerecipebox">
       <div className="columns">
 
-        <div className="column is-two-fifths is-flex">
-          <PostReview recipe={recipe} recipeId={recipeId} fetchRecipe={fetchRecipe} />
+        <div className="column is-two-fifths is-flex is-flex-direction-column" id="columnleft" style={{alignItems: 'stretch'}}>
+          <PostReview recipe={recipe} recipeId={recipeId} fetchRecipe={fetchRecipe} userId={userId}/>
         </div>
 
-        <div className="column is-three-fifths is-flex is-flex-direction-column">
+        <div className="column is-three-fifths is-flex is-flex-direction-column" style={{alignItems: 'stretch'}}>
           <div className="block box">
           {isCreator(recipe.user._id) && <EditRecipeModal recipeId={recipeId} history={history}/> }
             <h1 className="title">{recipe.recipeName}</h1>
@@ -85,7 +84,7 @@ const SingleRecipe = ({ match, history }) => {
           </div>
           <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
           <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
-          <div className="box">
+          <div className="box" style={{maxHeight: '475px', overflow: 'scroll'}}>
           <div className="buttons has-addons is-right">
               <button className="button is-dark" onClick={() => speak({ text: ingredientsList })}>
                 Serenade me with the recipe</button>
@@ -104,6 +103,7 @@ const SingleRecipe = ({ match, history }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   </main >
 }
