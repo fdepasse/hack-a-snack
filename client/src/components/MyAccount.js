@@ -10,6 +10,7 @@ import GetSuggested from './SuggestedRecipes'
 export default function myAccount({ match }) {
   const [savedRecipes, updateSaved] = useState([])
   const [postedRecipes, updatePosted] = useState([])
+  const [name, updateName] = useState('')
   const [loading, updateLoading] = useState(true)
   const token = localStorage.getItem('token')
 
@@ -21,6 +22,7 @@ export default function myAccount({ match }) {
         })
         updatePosted(data.postedRecipes)
         updateSaved(data.savedRecipes)
+        updateName(data.username)
         updateLoading(false)
       } catch (err) {
         console.log(err)
@@ -34,16 +36,14 @@ export default function myAccount({ match }) {
     return <h1 className="subtitle">Loading...</h1>
   }
 
-  // console.log('savedRecipes', savedRecipes)
-
-  const settings = {
+  const settingsPosted = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: postedRecipes.length,
+    slidesToScroll: postedRecipes.length,
     autoplay: true,
-    // cssEase: 'linear',
+    rows: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -51,7 +51,8 @@ export default function myAccount({ match }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
+          dots: true,
+          rows: 1,
         }
       },
       {
@@ -59,14 +60,55 @@ export default function myAccount({ match }) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
+          initialSlide: 2,
+          rows: 1,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          rows: 1,
+        }
+      }
+    ]
+  }
+
+  const settingsSaved = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: savedRecipes.length,
+    slidesToScroll: 5,
+    autoplay: true,
+    rows: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+          rows: 1,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          rows: 1,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          rows: 1,
         }
       }
     ]
@@ -76,33 +118,43 @@ export default function myAccount({ match }) {
     height: '25%',
   }
 
+  function recipesAdded(array) {
+    if (array.length === 0) {
+      return `No recipes added yet 👨‍🍳`
+    }
+  }
+
   return <main className='is-flex accountContainer columns is-desktop'>
     <section className='column is-two-thirds'>
-      <h1 className='title is-2 has-text-centered'>My Account</h1>
+      <h1 className='title is-2 has-text-centered'>{name}'s Recipes</h1>
       {/* <EditRecipeModal /> */}
+      <UpdateProfileModal />
       <div>
         <h2 className='title is-4'>Saved Recipes</h2>
-        <hr/>
-        <Slider {...settings} style={sliderStyle}>
+        <span>{recipesAdded(savedRecipes)}</span>
+        <hr />
+        <Slider {...settingsSaved} style={sliderStyle}>
           {savedRecipes.map(saved => {
             return <Link key={saved._id} to={`/recipes/${saved._id}`}>
               <img className='slideImage' src={saved.image} alt={saved.recipeName} />
+              <h5 className="title is-5">{saved.recipeName}</h5>
             </Link>
           })}
         </Slider>
       </div>
       <div>
         <h2 className='title is-4'>Posted Recipes</h2>
-        <hr/>
-        <Slider {...settings} style={sliderStyle}>
+        <span>{recipesAdded(postedRecipes)}</span>
+        <hr />
+        <Slider {...settingsPosted} style={sliderStyle}>
           {postedRecipes.map(posted => {
             return <Link key={posted._id} to={`/recipes/${posted._id}`}>
               <img className='slideImage' src={posted.image} alt={posted.recipeName} />
+              <h5 className="title is-5">{posted.recipeName}</h5>
             </Link>
           })}
         </Slider>
       </div>
-      <UpdateProfileModal />
     </section>
     {/* <button className='is-button'>Add a recipe</button> */}
     <section className='column is-one-third suggested'>

@@ -120,7 +120,7 @@ async function searchRecipe(req, res, next) {
   const searchData = req.query.q
 
   try {
-    const recipeList = await Recipes.find({ $text: { $search: `"${searchData}"` } }).populate('user').populate('comments.user')
+    const recipeList = await Recipes.find({ $text: { $search: `'${searchData}'` } }).populate('user').populate('comments.user')
 
     console.log(recipeList)
     res.status(200).send(recipeList)
@@ -130,6 +130,7 @@ async function searchRecipe(req, res, next) {
     next(err)
   }
 }
+
 
 export default {
   getRecipes,

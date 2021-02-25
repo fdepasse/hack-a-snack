@@ -6,7 +6,6 @@ const SearchResults = ({ location, history }) => {
   const [recipeData, updateRecipeData] = useState([])
   const [searchData, updateSearchData] = useState(location.state)
   const [filterSelected, updateFilterSelected] = useState('All')
-  console.log(location)
 
   useEffect(() => {
     axios.get('/api/search', { params: { q: searchData } })
@@ -22,6 +21,7 @@ const SearchResults = ({ location, history }) => {
       const { data } = await axios.get('/api/search', { params: { q: searchData } })
       updateRecipeData(data)
       history.push({ pathname: '/search', state: searchData })
+      updateFilterSelected('All')
     } catch (err) {
       console.log(err)
     }
@@ -31,10 +31,19 @@ const SearchResults = ({ location, history }) => {
     return recipeData.filter(recipe => {
       if (filterSelected === 'All') {
         return recipeData
-      } else if (filterSelected === 'Recipe Name') {
-        return recipe.recipeName.toLowerCase().includes(searchData.toLowerCase())
+        // This make sure the filter is not updating unless a new search is submitted
+      } else if (searchData === location.state) {
+        if (filterSelected === 'Recipe Name') {
+          return recipe.recipeName.toLowerCase().includes(searchData.toLowerCase())
+        } else {
+          return recipe.ingredients.join('').toLowerCase().includes(searchData.toLowerCase().split(' ').join(''))
+        }
       } else {
-        return recipe.ingredients.join('').toLowerCase().includes(searchData.toLowerCase().split(' ').join(''))
+        if (filterSelected === 'Recipe Name') {
+          return recipe.recipeName.toLowerCase().includes(location.state.toLowerCase())
+        } else {
+          return recipe.ingredients.join('').toLowerCase().includes(location.state.toLowerCase().split(' ').join(''))
+        }
       }
     })
   }
@@ -48,7 +57,7 @@ const SearchResults = ({ location, history }) => {
           <div className="field">
             <div className="control">
               <input
-                onChange={(event) => updateSearchData(event.target.value)}
+                onChange={event => updateSearchData(event.target.value)}
                 className="input"
                 type="text"
                 placeholder="Enter your search here"

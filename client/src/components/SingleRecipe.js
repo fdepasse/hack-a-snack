@@ -5,6 +5,7 @@ import Rating from 'react-rating'
 import { Link } from 'react-router-dom'
 import EditRecipeModal from './EditRecipe/EditRecipeModal'
 import { useSpeechSynthesis } from 'react-speech-kit'
+import { getLoggedInUserId } from './lib/auth'
 import { isCreator } from '../lib/auth'
 import { withRouter } from 'react-router-dom'
 
@@ -18,7 +19,6 @@ const SingleRecipe = ({ match, history }) => {
   const userId = match.params.user
 
   async function fetchRecipe() {
-
     try {
       const { data } = await axios.get(`/api/recipes/${recipeId}`)
       updateRecipe(data)
@@ -27,19 +27,21 @@ const SingleRecipe = ({ match, history }) => {
     }
   }
 
-
   useEffect(() => {
     fetchRecipe()
   }, [])
 
-  console.log(token, 'line 34')
-  console.log(recipeId)
-
+  async function handleDelete() {
+    const token = localStorage.getItem('token')
+    await axios.delete(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    history.push('/recipes')
+  }
 
   if (!recipe.user) {
     return null
   }
-
 
   function averageRating() {
     // Access the review array, filter to get an array of ratings excluding falsy value
@@ -57,7 +59,13 @@ const SingleRecipe = ({ match, history }) => {
   }
   console.log(averageRating())
 
-
+  function correctUserPage () {
+    if (getLoggedInUserId() === recipe.user._id) {
+      return '/myaccount'
+    } else if (getLoggedInUserId() !== recipe.user._id) {
+      return `/userrecipes/${recipe.user._id}`
+    }
+  }
 
   return <main className="is-flex align-items-center">
     <div className="block box" id="singlerecipebox">
@@ -71,7 +79,7 @@ const SingleRecipe = ({ match, history }) => {
           <div className="block box">
             {isCreator(recipe.user._id) && <EditRecipeModal recipeId={recipeId} history={history} fetchRecipe={fetchRecipe} />}
             <h1 className="title">{recipe.recipeName}</h1>
-            <Link to={`/userrecipes/${recipe.user._id}`} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
+            <Link to={correctUserPage()} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
           </div>
 
           <div className="block box">

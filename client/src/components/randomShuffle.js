@@ -4,6 +4,7 @@ import axios from 'axios'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 
+
 export default function ShuffleCarousel() {
   const [recipeData, updateRecipeData] = useState([])
   const [loading, updateLoading] = useState(true)
@@ -34,9 +35,35 @@ export default function ShuffleCarousel() {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 5,
     autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 360,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   }
 
   const sliderStyle = {
@@ -53,6 +80,7 @@ export default function ShuffleCarousel() {
         {recipeData.map((recipe, index) => {
           return <Link key={index} to={`/recipes/${recipe._id}`}>
             <img className='slideImage' src={recipe.image} alt={recipe.recipeName} />
+            <h5 className="title is-5">{recipe.recipeName}</h5>
           </Link>
         })}
       </Slider>

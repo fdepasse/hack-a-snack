@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 #singlerecipebox {
   width: 90%;
   align-content: center;
@@ -66,4 +68,17 @@ p.modal-card-title {
 
 .file-name{
   background-color: white;
+  padding: 30px;
+}
+
+.logout{
+  font-family: 'Pacifico', cursive;
+  padding: 50px;
+  font-size: 6em;
+}
+
+.load {
+  display: flex;
+  justify-content: 'center';
+  align-items: 'center';
 }

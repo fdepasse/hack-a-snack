@@ -81,8 +81,6 @@ async function updateProfile(req, res, next) {
   }
 }
 
-
-
 export default {
   register,
   login,
