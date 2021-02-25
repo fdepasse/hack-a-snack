@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import getLoggedInUserId from '../lib/auth'
+import { getLoggedInUserId } from '../lib/auth'
 
-export default function UpdateProfileModal({ history }) {
+export default function UpdateProfileModal(props) {
   const [modal, showModal] = useState(false)
+  const token = localStorage.getItem('token')
+  const history = props.history
+
+
 
   const [formData, updateFormData] = useState({
     username: '',
-    email: '',
-    image: 'http://static1.squarespace.com/static/53959f2ce4b0d0ce55449ea5/578f8a2015d5db7814d1ffd0/588f5d6b3a0411d31b553a1a/1490712148195/',
-    password: '',
-    passwordConfirmation: ''
+    image: ''
   })
 
-  // const user = getLoggedInUserId
-  // console.log(user)
 
-
-  function handleChange(event) {
-    const name = event.target.name
-    const value = event.target.value
-
-    updateFormData({
-      ...formData,
-      [name]: value
+  // ! Get request to populate form fields
+  useEffect(() => {
+    axios.get(`/api/user/${getLoggedInUserId()}`, {
+      headers: { Authorization: `Bearer ${token}` }
     })
-  }
+      .then(({ data }) => {
+        updateFormData(data)
+        console.log(data)
+        console.log(formData)
+      })
+  }, [])
+
 
   //! This will handle the image upload to Cloudinary
   function handleUpload(event) {
+    //!! prevent event default gives a scatty error
     event.preventDefault()
     window.cloudinary.createUploadWidget(
       {
@@ -49,14 +51,29 @@ export default function UpdateProfileModal({ history }) {
   }
 
 
+  //!!get values from input and map to form fields!
+
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+
+    updateFormData({
+      ...formData,
+      [name]: value
+    })
+  }
+
+
+
+
   function handleSubmit(event) {
     event.preventDefault()
     const token = localStorage.getItem('token')
     try {
-      const { data } = axios.put('/api/user/6034e770756bec3bc3697d80', formData, { 
+      const { data } = axios.put(`/api/user/${getLoggedInUserId()}`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      history.push('/myAccount/')
+      history.push('/')
     } catch (err) {
       const errorMessage = err.response.data
       if (errorMessage.errors.hasOwnProperty('email')) {
@@ -65,6 +82,7 @@ export default function UpdateProfileModal({ history }) {
         alert(errorMessage.errors.password.message)
       }
     }
+    showModal(!modal)
   }
 
 
@@ -87,10 +105,15 @@ export default function UpdateProfileModal({ history }) {
         <section className="modal-card-body">
           <main className='column'>
             <div className='column is-flex is-flex-direction-column is-align-items-center'>
+              
 
-              <h1 className='title is-1'>Edit this</h1>
-              <form className='field' onSubmit={handleSubmit}>
+              <h1 className='title is-1'>Edit details here...</h1>
+              <form className='field'>
                 <div className='field'>
+                  <figure className="image is-128x128" src={formData.image}>
+                    
+                    <img className="is-rounded"/>
+                  </figure>
                   <label className='label'>Username</label>
                   <div className='control'>
                     <input className='input'
@@ -102,39 +125,6 @@ export default function UpdateProfileModal({ history }) {
                   </div>
                 </div>
                 <div className='field'>
-                  <label className='label'>Email</label>
-                  <div className='control'>
-                    <input className='input'
-                      type="text"
-                      value={formData.email}
-                      onChange={handleChange}
-                      name={'email'}
-                    />
-                  </div>
-                </div>
-                <div className='field'>
-                  <label className='label'>Password</label>
-                  <div className='control'>
-                    <input className='input'
-                      type="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      name={'password'}
-                    />
-                  </div>
-                </div>
-                <div className='field'>
-                  <label className='label'>Password Confirmation</label>
-                  <div className='control'>
-                    <input className='input'
-                      type='password'
-                      value={formData.passwordConfirmation}
-                      onChange={handleChange}
-                      name={'passwordConfirmation'}
-                    />
-                  </div>
-                </div>
-                <div className='field'>
                   <label className='label'>Profile Picture</label>
                   <div className='control'>
                     <button className="button" onClick={handleUpload}>Click to upload an image</button>
@@ -142,7 +132,6 @@ export default function UpdateProfileModal({ history }) {
                 </div>
 
                 <div className="control">
-                  <button className="button is-link">Register</button>
                 </div>
               </form>
             </div>
@@ -150,6 +139,7 @@ export default function UpdateProfileModal({ history }) {
         </section>
         <footer className="modal-card-foot">
           <button className="button" onClick={() => showModal(!modal)}>Cancel</button>
+          <button className="button is-link" onClick={handleSubmit}>Update your profile</button>
         </footer>
       </div>
     </div>
