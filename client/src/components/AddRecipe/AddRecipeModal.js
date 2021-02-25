@@ -95,7 +95,7 @@ export default function AddRecipeModal({ history }) {
   }
 
   return <section className="hero">
-    <div className="hero-body">
+    <div className="hero-body" id="herobackground">
       <div className="columns">
         <main className='column'>
           <div className='column is-flex is-flex-direction-column is-align-items-center'>

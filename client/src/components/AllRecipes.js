@@ -166,7 +166,7 @@ const AllRecipes = ({ history }) => {
             <div className="control">
               <input
                 onChange={(event) => updateSearchData(event.target.value)}
-                className="input"
+                className="input is-rounded"
                 type="text"
                 placeholder="Enter your search here"
                 value={searchData}
@@ -175,7 +175,7 @@ const AllRecipes = ({ history }) => {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button">Search</button>
+              <button className="button is-rounded">Search</button>
             </div>
           </div>
         </form>

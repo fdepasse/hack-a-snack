@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-#singlerecipebox {
-  width: 90%;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-}
-
 .menu-item {
   display: inline;
 }
@@ -31,7 +24,7 @@ nav.navbar, .footer  {
 .slideImage{
   height: 200px;
   width: 250px;
-  border-radius: 20%;
+  border-radius: 12px;
   background-color: grey;
 }
 .suggested{
@@ -45,7 +38,19 @@ nav.navbar, .footer  {
   padding: 20px;
 }
 
-.hero-body {
+#singlerecipebox {
+  width: 90%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  max-height: 1500px !important;
+}
+
+#columnleft {
+  max-height: 1500px !important;
+}
+
+#herobackground {
   background-image: url('https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
 }
 

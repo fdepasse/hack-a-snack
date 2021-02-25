@@ -91,7 +91,6 @@ export default function EditRecipeModal(props) {
     })
   }
 
-  console.log('history ' + history)
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -110,14 +109,21 @@ export default function EditRecipeModal(props) {
         headers: { Authorization: `Bearer ${token}` }
       })
 
-      console.log('2  ' + data)
     } catch (err) {
       console.log(err.response.data)
     }
     props.fetchRecipe()
     showModal(!modal)
+    
 
+  }
 
+  async function handleDelete(recipeId) {
+    const token = localStorage.getItem('token')
+    await axios.delete(`/api/recipes/${recipeId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    history.push('/recipes')
   }
 
 
@@ -125,9 +131,10 @@ export default function EditRecipeModal(props) {
 
 
   return <>
-    <div className="container">
+    <div className="buttons had-addons is-right">
 
-      <button className="button is-danger" onClick={() => showModal(!modal)}>Edit a recipe  👩‍💻 </button>
+      <button className="button is-dark is-rounded" onClick={() => showModal(!modal)}>Edit</button>
+      <button className="button is-dark is-rounded" onClick={() => handleDelete(recipeId)}>Delete</button>
 
     </div>
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>

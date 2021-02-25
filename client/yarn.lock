@@ -5224,6 +5224,11 @@
     "source-map" "^0.6.1"
     "supports-color" "^6.1.0"
 
+"pretty-checkbox@^3.0.3":
+  "integrity" "sha1-1JyAE6j8CO4MLW695FNGS/28Qo4="
+  "resolved" "https://registry.npmjs.org/pretty-checkbox/-/pretty-checkbox-3.0.3.tgz"
+  "version" "3.0.3"
+
 "pretty-error@^2.1.1":
   "integrity" "sha1-X0+HyPkeWuPzuoerTPXgOxoX8aM="
   "resolved" "https://registry.npmjs.org/pretty-error/-/pretty-error-2.1.1.tgz"
