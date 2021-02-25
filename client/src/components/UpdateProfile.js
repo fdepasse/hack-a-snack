@@ -114,7 +114,7 @@ export default function UpdateProfileModal(props) {
                     
                     <img className="is-rounded"/>
                   </figure>
-                  <label className='label'>Username</label>
+                  <label className='label-text'>Username</label>
                   <div className='control'>
                     <input className='input'
                       type="text"

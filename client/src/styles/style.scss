@@ -1,8 +1,5 @@
-// @import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-.footer {
-  background-color: black;
-}
 .menu-item {
   display: inline;
 }
@@ -12,7 +9,7 @@
   }
 }
 
-nav.navbar {
+nav.navbar, .footer  {
   background-color: #020100;
 }
 
@@ -24,9 +21,6 @@ nav.navbar {
   align-items: stretch;
 }
 
-// div.column {
-//   max-height: 750px;
-// }
 .slideImage{
   height: 200px;
   width: 250px;
@@ -56,3 +50,40 @@ nav.navbar {
   max-height: 1500px !important;
 }
 
+#herobackground {
+  background-image: url('https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+}
+
+.button {
+  margin: 5px;
+}
+
+.is-flex-direction-column {
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-card-head, .modal-card-foot {
+  background-color: #020100;
+}
+
+p.modal-card-title {
+  color: white;
+}
+
+.file-name{
+  background-color: white;
+  padding: 30px;
+}
+
+.logout{
+  font-family: 'Pacifico', cursive;
+  padding: 50px;
+  font-size: 6em;
+}
+
+.load {
+  display: flex;
+  justify-content: 'center';
+  align-items: 'center';
+}
