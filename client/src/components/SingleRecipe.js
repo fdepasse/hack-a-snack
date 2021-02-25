@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom'
 import { isCreator } from '../lib/auth'
 import EditRecipeModal from './EditRecipe/EditRecipeModal'
 import { useSpeechSynthesis } from 'react-speech-kit'
-
-
+import { getLoggedInUserId } from './lib/auth'
 
 const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
@@ -16,10 +15,7 @@ const SingleRecipe = ({ match, history }) => {
   const { speak, cancel } = useSpeechSynthesis()
   const userId = match.params.user
 
-
-  // console.log(match.params.user, 'line 13')
   async function fetchRecipe() {
-
     try {
       const { data } = await axios.get(`/api/recipes/${recipeId}`)
       updateRecipe(data)
@@ -27,7 +23,6 @@ const SingleRecipe = ({ match, history }) => {
       console.log(err)
     }
   }
-
 
   useEffect(() => {
     fetchRecipe()
@@ -41,17 +36,9 @@ const SingleRecipe = ({ match, history }) => {
     history.push('/recipes')
   }
 
-  // async function handleSaveRecipe(recipeId) {
-  //   await axios.put(`/api/myrecipes/${recipeId}`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  // }
-
-
   if (!recipe.user) {
     return null
   }
-
 
   function averageRating() {
     // Access the review array, filter to get an array of ratings excluding falsy value
@@ -68,6 +55,14 @@ const SingleRecipe = ({ match, history }) => {
     return Math.round(average * 2) / 2
   }
   console.log(averageRating())
+
+  function correctUserPage () {
+    if (getLoggedInUserId() === recipe.user._id) {
+      return '/myaccount'
+    } else if (getLoggedInUserId() !== recipe.user._id) {
+      return `/userrecipes/${recipe.user._id}`
+    }
+  }
 
   return <main className="is-flex align-items-center">
     <div className="block box" id="singlerecipebox">
@@ -87,7 +82,7 @@ const SingleRecipe = ({ match, history }) => {
               </div>
             }
             <h1 className="title">{recipe.recipeName}</h1>
-            <Link to={`/userrecipes/${recipe.user._id}`} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
+            <Link to={correctUserPage()} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
           </div>
           <div className="block box">
             <h5 className="subtitle">{recipe.review.length} reviews</h5>
