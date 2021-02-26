@@ -9,6 +9,7 @@ export default function UserRecipes(props) {
   const [savedRecipes, updateSaved] = useState([])
   const [postedRecipes, updatePosted] = useState([])
   const [name, updateName] = useState('')
+  const [image, updateImage] = useState('')
   const [loading, updateLoading] = useState(true)
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function UserRecipes(props) {
         updatePosted(data.postedRecipes)
         updateSaved(data.savedRecipes)
         updateName(data.username)
+        updateImage(data.image)
         updateLoading(false)
       } catch (err) {
         console.log(err)
@@ -35,8 +37,8 @@ export default function UserRecipes(props) {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: postedRecipes.length,
-    slidesToScroll: postedRecipes.length,
+    slidesToShow: sliderStyles(postedRecipes),
+    slidesToScroll: sliderStyles(postedRecipes),
     autoplay: true,
     rows: 1,
     responsive: [
@@ -75,7 +77,7 @@ export default function UserRecipes(props) {
     infinite: true,
     speed: 500,
     slidesToShow: savedRecipes.length,
-    slidesToScroll: 5,
+    slidesToScroll: savedRecipes.length,
     autoplay: true,
     rows: 1,
     responsive: [
@@ -109,6 +111,15 @@ export default function UserRecipes(props) {
     ]
   }
 
+  function sliderStyles(array) {
+    if (array.length < 5) {
+      return array.length
+    }
+    else if (array.length >= 5) {
+      return 5
+    }
+  }
+
   const sliderStyle = {
     height: '25%',
   }
@@ -118,8 +129,18 @@ export default function UserRecipes(props) {
     }
   }
 
+  function sliderStyles(array) {
+    if (array.length < 5) {
+      return array.length
+    }
+    else if (array.length >= 5) {
+      return 5
+    }
+  }
+
   return <main className='column accountContainer'>
     <h1 className='title is-2 has-text-centered'>{name}'s Recipes</h1>
+    <img className='profilePic' src={image} />
     <div>
       <h2 className='title is-4'>Saved Recipes</h2>
       <span>{recipesAdded(savedRecipes)}</span>
@@ -128,6 +149,7 @@ export default function UserRecipes(props) {
         {savedRecipes.map(saved => {
           return <Link key={saved._id} to={`/recipes/${saved._id}`}>
             <img className='slideImage' src={saved.image} alt={saved.recipeName} />
+            <h5 className="title is-5">{saved.recipeName.length >= 12 ? saved.recipeName.slice(0, 15) + '....' : saved.recipeName}</h5>
           </Link>
         })}
       </Slider>
@@ -140,6 +162,7 @@ export default function UserRecipes(props) {
         {postedRecipes.map(posted => {
           return <Link key={posted._id} to={`/recipes/${posted._id}`}>
             <img className='slideImage' src={posted.image} alt={posted.recipeName} />
+            <h5 className="title is-5">{posted.recipeName.length >= 12 ? posted.recipeName.slice(0, 15) + '....' : posted.recipeName}</h5>
           </Link>
         })}
       </Slider>

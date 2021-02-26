@@ -42,7 +42,7 @@ export default function GetSuggested() {
       return <Link key={recipe._id} to={`/recipes/${recipe._id}`}>
         <div >
           <img key={recipe._id} className='slideImage' src={recipe.image} alt={recipe.recipeName} />
-          <h5 className="title is-5">{recipe.recipeName}</h5>
+          <h5 className="title is-5">{recipe.recipeName.length >= 12 ? recipe.recipeName.slice(0, 15) + '....' : recipe.recipeName}</h5>
         </div>
       </Link>
     })}

@@ -10,7 +10,7 @@ export default function ShuffleCarousel() {
   const [loading, updateLoading] = useState(true)
   const dataArray = []
 
-  //getting one random recipe
+  //get one random recipe
   async function getThoseRecipes() {
     try {
       const { data } = await axios.get('/api/random-recipe')
@@ -23,8 +23,7 @@ export default function ShuffleCarousel() {
 
   useEffect(() => {
     for (let i = 0; i <= 9; i++) {
-      getThoseRecipes()//calls the func x 9
-      //add some code here to check if we already have the recipe in the array STRETCH 
+      getThoseRecipes()
       if (i === 9) {
         updateRecipeData(dataArray)
         updateLoading(false)//as soon as i gets to 9 we'll change loading to true as we now have the data to display
@@ -35,15 +34,15 @@ export default function ShuffleCarousel() {
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 7,
     slidesToScroll: 5,
     autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true
         }
@@ -69,7 +68,7 @@ export default function ShuffleCarousel() {
   const sliderStyle = {
     height: '25%',
   }
-  
+
   if (loading) {
     return <h1 className="subtitle">Loading...</h1>
   }
@@ -80,7 +79,7 @@ export default function ShuffleCarousel() {
         {recipeData.map((recipe, index) => {
           return <Link key={index} to={`/recipes/${recipe._id}`}>
             <img className='slideImage' src={recipe.image} alt={recipe.recipeName} />
-            <h5 className="title is-5">{recipe.recipeName}</h5>
+            <h5 className="title is-5">{recipe.recipeName.length >= 12 ? recipe.recipeName.slice(0, 15) + '....' : recipe.recipeName}</h5>
           </Link>
         })}
       </Slider>
