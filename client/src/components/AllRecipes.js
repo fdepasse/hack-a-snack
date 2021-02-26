@@ -158,8 +158,8 @@ const AllRecipes = ({ history }) => {
   return <main id="herobackgroundsearch" style={{backgroundAttatchment: 'scroll'}}>
     {/* Search Bar */}
     <section className="section">
-      <h1 className="title" id="allrec">ALL RECIPES</h1>
-      <h3 className="subtitle">Search for a new recipe</h3>
+      <h1 className="title has-text-white" id="allrec">ALL RECIPES</h1>
+      <h3 className="subtitle has-text-white">Search for a new recipe</h3>
       <div className="column">
         <form onSubmit={handleSubmit}>
           <div className="field">
@@ -184,14 +184,14 @@ const AllRecipes = ({ history }) => {
 
     {/* Menu and Recipes */}
     <section className="section">
-      <h3 className="subtitle" id="browserec">BROWSE RECIPES</h3>
-      <p className="content">{filterRecipes().length} Recipes Available</p>
+      <h3 className="subtitle has-text-white" id="browserec">BROWSE RECIPES</h3>
+      <p className="content has-text-white">{filterRecipes().length} Recipes Available</p>
       <div className="columns">
 
         {/* Menu */}
         <section className="section">
           <div className="column">
-            <nav className="panel">
+            <nav className="panel has-background-white">
               
               <p className="panel-heading">Filters</p>
 
