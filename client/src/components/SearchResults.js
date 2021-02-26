@@ -48,11 +48,11 @@ const SearchResults = ({ location, history }) => {
     })
   }
 
-  return <main>
+  return <main className="has-background-black">
     <section className="section">
       <div className="column">
-        <h1 className="title">Results</h1>
-        <h3 className="subtitle">{`${recipeData.length} recipes found`}</h3>
+        <h1 className="title has-text-white">Results</h1>
+        <h3 className="subtitle has-text-white">{`${recipeData.length} recipes found`}</h3>
         <form onSubmit={handleSubmit}>
           <div className="field">
             <div className="control">
@@ -76,7 +76,7 @@ const SearchResults = ({ location, history }) => {
 
     <section className="section">
       <div className="block">
-        <h4 className="subtitle">Show Results by:</h4>
+        <h4 className="subtitle has-text-white">Show Results by:</h4>
       </div>
       <div className="tabs is-boxed">
         <ul>

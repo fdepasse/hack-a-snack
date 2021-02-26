@@ -80,7 +80,7 @@ export default function ShuffleCarousel() {
         {recipeData.map((recipe, index) => {
           return <Link key={index} to={`/recipes/${recipe._id}`}>
             <img className='slideImage' src={recipe.image} alt={recipe.recipeName} />
-            <h5 className="title is-5">{recipe.recipeName}</h5>
+            <h5 className="title is-6 pt-3">{recipe.recipeName}</h5>
           </Link>
         })}
       </Slider>
