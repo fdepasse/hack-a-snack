@@ -38,6 +38,8 @@ nav.navbar, .footer  {
   padding: 20px;
 }
 
+
+
 #singlerecipebox {
   width: 90%;
   align-content: center;
@@ -61,6 +63,24 @@ nav.navbar, .footer  {
 .is-flex-direction-column {
   padding: 20px;
   border-radius: 5px;
+}
+
+.labels {
+  color: #ffffff;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.div.hero {
+  align-items: center;
+}
+
+.titles {
+  color: white;
+  font-family: 'Pacifico', cursive;
+  padding: 20px;
+  font-size: 3em;
 }
 
 .modal-card-head, .modal-card-foot {

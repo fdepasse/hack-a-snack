@@ -99,15 +99,15 @@ export default function AddRecipeModal({ history }) {
       <div className="columns">
         <main className='column'>
           <div className='column is-flex is-flex-direction-column is-align-items-center'>
-            <h1 className="title is-1">Create a recipe..</h1>
+            <h1 className="titles">Create a recipe..</h1>
             <form className='field' onSubmit={handleSubmit}>
 
               <div className="field-body">
 
                 <div className='field'>
-                  <label className='label'>Recipe name</label>
-                  <div className='control'>
-                    <input className='input'
+                  <label className="labels" id="white">Recipe name</label>
+                  <div className="control">
+                    <input className="input"
                       type="text"
                       value={formData.recipeName}
                       onChange={handleChange}
@@ -118,7 +118,7 @@ export default function AddRecipeModal({ history }) {
 
 
                 <div className='field'>
-                  <label className='label'>Description</label>
+                  <label className="labels" id="white">Description</label>
                   <div className='control'>
                     <input className='input'
                       type="text"
@@ -134,7 +134,7 @@ export default function AddRecipeModal({ history }) {
 
 
               <div className='field'>
-                <label className='label'>Method</label>
+                <label className="labels" id="white">Method</label>
                 <div className='control'>
                   <input className='input'
                     type="text"
@@ -146,7 +146,7 @@ export default function AddRecipeModal({ history }) {
               </div>
 
               <div className='field'>
-                <label className="label">Ingredients</label>
+                <label className="labels" id="white">Ingredients</label>
                 <div className='control'>
                   <Creatable
                     isClearable
@@ -172,10 +172,10 @@ export default function AddRecipeModal({ history }) {
 
               <div className="field-body">
                 <div className='field'>
-                  <label className='label'>Servings</label>
+                  <label className="labels" id="white">Servings</label>
                   <div className='control'>
                     <input className='input'
-                      type="dropdown"
+                      type="number"
                       value={formData.servings}
                       onChange={handleChange}
                       name={'servings'}
@@ -185,7 +185,7 @@ export default function AddRecipeModal({ history }) {
 
 
                 <div className='field'>
-                  <label className='label'>Source</label>
+                  <label className="labels" id="white">Source</label>
                   <div className='control'>
                     <input className='input'
                       type="dropdown"
@@ -204,7 +204,7 @@ export default function AddRecipeModal({ history }) {
               <div className="field-body">
 
                 <div className='field'>
-                  <label className='label'>Cooking Time </label>
+                  <label className="labels" id="white">Cooking Time </label>
                   <div className='control'>
                     <input className='input'
                       type="number"
@@ -216,10 +216,10 @@ export default function AddRecipeModal({ history }) {
                 </div>
 
                 <div className='field'>
-                  <label className='label'>Calories</label>
+                  <label className="labels" id="white">Calories</label>
                   <div className='control'>
                     <input className='input'
-                      type="text"
+                      type="number"
                       value={formData.calories}
                       onChange={handleChange}
                       name={'calories'}
@@ -231,7 +231,7 @@ export default function AddRecipeModal({ history }) {
 
               <div className="field-body">
                 <div className='field'>
-                  <label className="label">Health</label>
+                  <label className="labels" id="white">Health</label>
                   <Select
                     defaultValue={[]}
                     isMulti
@@ -245,7 +245,7 @@ export default function AddRecipeModal({ history }) {
                 </div>
 
                 <div className='field'>
-                  <label className="label">Diet</label>
+                  <label className="labels" id="white">Diet</label>
                   <Select
                     defaultValue={[]}
                     isMulti
@@ -265,7 +265,7 @@ export default function AddRecipeModal({ history }) {
 
 
               <div className='field'>
-                <label className="label">Allergens</label>
+                <label className="labels">Allergens</label>
                 <Select
                   defaultValue={[]}
                   isMulti
@@ -281,27 +281,19 @@ export default function AddRecipeModal({ history }) {
 
 
               <div className='field'>
-                <label className='label'>Add an Image</label>
+                <label className='labels'>Upload an Image</label>
                 <div className='control'>
-                  <div className="file has-name">
-                    <label className="file-label">
-                      <input className="file-input" type="file" name="resume" />
-                      <span className="file-cta">
-                        <span className="file-icon">
-                          <i className="fas fa-upload" />
-                        </span>
-                        <span className="file-label" onClick={handleUpload}>Choose a file…</span>
-                      </span>
-                      <span className="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
-                    </label>
-                  </div>
+                  <button className="button" onClick={handleUpload}>Upload a picture of your recipe here.</button>
                 </div>
               </div>
 
 
 
+
+
+
               <div className="control">
-                <button className="button is-link">Create a recipe</button>
+                <button className="button is-rounded">Create a recipe</button>
               </div>
 
 

@@ -30,36 +30,44 @@ export default function Login({ history }) {
     }
   }
 
-  return <main className='column'>
-    <div className='column is-flex is-flex-direction-column is-align-items-center'>
-      <h1 className='title is-1'>Login</h1>
-      <form className='field' onSubmit={handleSubmit}>
-        <div>
-          <label className='label'>Email</label>
-          <div className='control'>
-            <input className='input'
-              type="text"
-              value={formData.email}
-              onChange={handleChange}
-              name={'email'}
-            />
+  return <section className="hero is-danger is-fullheight">
+    <div className="hero-body" id="herobackground">
+      <div className="container">
+        <main className='column'>
+          <div className='column is-flex is-flex-direction-column is-align-items-center'>
+            <h1 className='titles'>Login</h1>
+            <form className='field' onSubmit={handleSubmit}>
+              <div>
+                <label className='labels'>Email</label>
+                <div className='control'>
+                  <input className='input'
+                    type="text"
+                    value={formData.email}
+                    onChange={handleChange}
+                    name={'email'}
+                  />
+                </div>
+              </div>
+              <div className='field'>
+                <label className='labels'>Password</label>
+                <div className='control'>
+                  <input className='input'
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    name={'password'}
+                  />
+                </div>
+              </div>
+              <div className="control">
+                <button className="button is-rounded">Login</button>
+              </div>
+            </form>
           </div>
-        </div>
-        <div className='field'>
-          <label className='label'>Password</label>
-          <div className='control'>
-            <input className='input'
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              name={'password'}
-            />
-          </div>
-        </div>
-        <div className="control">
-          <button className="button is-link">Login</button>
-        </div>
-      </form>
+        </main>
+
+
+      </div>
     </div>
-  </main>
+  </section>
 }

@@ -52,10 +52,10 @@ export default function Register({ history }) {
     } catch (err) {
       const errorMessage = err.response.data
 
-      if(errorMessage.errors.hasOwnProperty('email')){
+      if (errorMessage.errors.hasOwnProperty('email')) {
         alert(errorMessage.errors.email.message)
       }
-      else if(errorMessage.errors.hasOwnProperty('password')){
+      else if (errorMessage.errors.hasOwnProperty('password')) {
         alert('Please enter a valid password')
       }
     }
@@ -63,74 +63,83 @@ export default function Register({ history }) {
 
 
   return <>
-    <main className='column'>
-      <div className='column is-flex is-flex-direction-column is-align-items-center'>
+    <section className="hero">
+      <div className="hero-body" id="herobackground">
+        <div className="container">
+          <main className='column'>
+            <div className='column is-flex is-flex-direction-column is-align-items-center'>
 
-        <h1 className='title is-1'>Register</h1>
-        <form className='field' onSubmit={handleSubmit}>
+              <h1 className='titles'>Register</h1>
+              <form className='field' onSubmit={handleSubmit}>
 
 
 
-          <div className='field'>
-            <label className='label'>Username</label>
-            <div className='control'>
-              <input className='input'
-                type="text"
-                value={formData.username}
-                onChange={handleChange}
-                name={'username'}
-              />
+                <div className='field'>
+                  <label className='labels'>Username</label>
+                  <div className='control'>
+                    <input className='input'
+                      type="text"
+                      value={formData.username}
+                      onChange={handleChange}
+                      name={'username'}
+                    />
+                  </div>
+                </div>
+
+
+                <div className='field'>
+                  <label className='labels'>Email</label>
+                  <div className='control'>
+                    <input className='input'
+                      type="text"
+                      value={formData.email}
+                      onChange={handleChange}
+                      name={'email'}
+                    />
+                  </div>
+                </div>
+
+                <div className='field'>
+                  <label className='labels'>Password</label>
+                  <div className='control'>
+                    <input className='input'
+                      type="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      name={'password'}
+                    />
+                  </div>
+                </div>
+                <div className='field'>
+                  <label className='labels'>Password Confirmation</label>
+                  <div className='control'>
+                    <input className='input'
+                      type='password'
+                      value={formData.passwordConfirmation}
+                      onChange={handleChange}
+                      name={'passwordConfirmation'}
+                    />
+                  </div>
+                </div>
+                <div className='field'>
+                  <label className='labels'>Profile Picture</label>
+                  <div className='control'>
+                    <button className="button" onClick={handleUpload}>Upload a profile picture!</button>
+                  </div>
+                </div>
+
+                <div className="control">
+                  <button className="button is-rounded">Register</button>
+                </div>
+              </form>
             </div>
-          </div>
+          </main>
 
 
-          <div className='field'>
-            <label className='label'>Email</label>
-            <div className='control'>
-              <input className='input'
-                type="text"
-                value={formData.email}
-                onChange={handleChange}
-                name={'email'}
-              />
-            </div>
-          </div>
-
-          <div className='field'>
-            <label className='label'>Password</label>
-            <div className='control'>
-              <input className='input'
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                name={'password'}
-              />
-            </div>
-          </div>
-          <div className='field'>
-            <label className='label'>Password Confirmation</label>
-            <div className='control'>
-              <input className='input'
-                type='password'
-                value={formData.passwordConfirmation}
-                onChange={handleChange}
-                name={'passwordConfirmation'}
-              />
-            </div>
-          </div>
-          <div className='field'>
-            <label className='label'>Profile Picture</label>
-            <div className='control'>
-              <button className="button" onClick={handleUpload}>Click to upload an image</button>
-            </div>
-          </div>
-          
-          <div className="control">
-            <button className="button is-link">Register</button>
-          </div>
-        </form>
+        </div>
       </div>
-    </main>
+    </section>
+
 
   </>
 

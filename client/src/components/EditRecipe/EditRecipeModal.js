@@ -114,7 +114,7 @@ export default function EditRecipeModal(props) {
     }
     props.fetchRecipe()
     showModal(!modal)
-    
+
 
   }
 
@@ -141,7 +141,7 @@ export default function EditRecipeModal(props) {
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Update this recipe...</p>
+          <p className="modal-card-title"></p>
           <button className="delete" aria-label="close" onClick={() => showModal(!modal)} />
         </header>
         <section className="modal-card-body">
@@ -207,7 +207,7 @@ export default function EditRecipeModal(props) {
                     <label className='label'>Servings</label>
                     <div className='control'>
                       <input className='input'
-                        type="dropdown"
+                        type="numnber"
                         value={formData.servings}
                         onChange={handleChange}
                         name={'servings'}
@@ -242,7 +242,7 @@ export default function EditRecipeModal(props) {
                     <label className='label'>Calories</label>
                     <div className='control'>
                       <input className='input'
-                        type="text"
+                        type="number"
                         value={formData.calories}
                         onChange={handleChange}
                         name={'calories'}
@@ -292,29 +292,20 @@ export default function EditRecipeModal(props) {
                   />
                 </div>
                 <div className='field'>
-                  <label className='label'>Add an Image</label>
+                  <label className='labels'>Upload an Image</label>
                   <div className='control'>
-                    <div className="file has-name">
-                      <label className="file-label">
-                        <input className="file-input" type="file" name="resume" />
-                        <span className="file-cta">
-                          <span className="file-icon">
-                            <i className="fas fa-upload" />
-                          </span>
-                          <span className="file-label" onClick={handleUpload}>Choose a file…</span>
-                        </span>
-                        <span className="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
-                      </label>
-                    </div>
+                    <button className="button" onClick={handleUpload}>Upload a picture of your recipe here.</button>
                   </div>
                 </div>
+
+
               </form>
             </div>
           </main>
         </section>
         <footer className="modal-card-foot">
-          <button className="button" onClick={() => showModal(!modal)}>Cancel</button>
-          <button className="button is-link" onClick={handleSubmit} >Update your recipe</button>
+          <button className="button is-rounded" onClick={() => showModal(!modal)}>Cancel</button>
+          <button className="button is-rounded" onClick={handleSubmit} >Update your recipe</button>
         </footer>
       </div>
     </div>
