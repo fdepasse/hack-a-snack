@@ -15,10 +15,8 @@ const SingleRecipe = ({ match, history }) => {
   const recipeId = match.params.recipeId
   const [recipe, updateRecipe] = useState({})
   const ingredientsList = recipe.ingredients
-  const token = localStorage.getItem('token')
   const { speak, cancel } = useSpeechSynthesis()
   const userId = getLoggedInUserId()
-  console.log(userId, 'LINE 19')
 
   async function fetchRecipe() {
     try {
@@ -42,13 +40,10 @@ const SingleRecipe = ({ match, history }) => {
     // Access the review array, filter to get an array of ratings excluding falsy value
     // Map over the filtered array to get an array of valid ratings
     const ratingsArray = recipe.review.filter(recipe => recipe.rating).map(recipe => recipe.rating)
-    console.log(ratingsArray)
     // Calculate the sum of all ratings
     const ratingsSum = ratingsArray.reduce((acc, rating) => acc + rating, 0)
-    console.log(ratingsSum)
     // Calculate the average rating
     const average = ratingsSum / ratingsArray.length
-    console.log(average)
     // Round the average rating to nearest 0.5
     return Math.round(average * 2) / 2
   }

@@ -11,20 +11,18 @@ export default function GetSuggested() {
     try {
       const { data } = await axios.get('/api/random-recipe')
       suggestedArray.push(data)//pushes the recipe to the Array 
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
     async function randomRecipe() {
-      let suggestedArray = []
+      const suggestedArray = []
       for (let i = 0; i <= 2; i++) {
         await getSuggestedRecipes(suggestedArray)//calls the func x 5
         //add some code here to check if we already have the recipe in the array 
         if (i === 2) {
-          console.log(suggestedArray)
           updateSuggestedRecipes([...suggestedArray])
           updateLoading(false)//as soon as i get to 5 we'll change loading to true as we now have the data to display
         }

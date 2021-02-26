@@ -11,13 +11,6 @@ export default function PostReview(props) {
   const token = localStorage.getItem('token')
   const recipes = props.recipe
   const [toggle, setToggle] = useState(false)
-  const userId = props.userId
-  const [loading, updateLoading] = useState(true)
-  const [formData, updateFormData] = useState({})
-  const [savedRecipes, updateSavedRecipes] = useState([])
-
-  console.log(userId)
-  console.log(toggle)
 
 
   async function handleReview() {
@@ -36,40 +29,7 @@ export default function PostReview(props) {
     props.fetchRecipe()
   }
 
-  // useEffect(() => {
-  //   async function getUser() {
-  //     try {
-  //       const { data } = await axios.get('/api/user/60353f2118592b8553341e80')
-  //       updateSavedRecipes(data)
-  //       console.log(data, 'line 39')
-  //       updateLoading(false)
-  //       // const toggleData = data.savedRecipes.includes(recipeId)
-  //       // setToggle(toggleData)
 
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-
-  //   }
-  //   getUser()
-  // }, [])
-
-//   useEffect(() => {
-//   async function getUser(userId) {
-//     axios.get(`/api/user/${userId}`, {
-//       headers: { Authorization: `Bearer ${token}` }
-//     })
-//       .then(({ data }) => {
-//         updateFormData(data)
-//         console.log(data)
-//         console.log(formData)
-//       })
-//   }
-// getUser()
-//   }, [])
-
-
-  console.log(savedRecipes, 'line 46')
 
   async function handleSaveRecipe(recipeId, authToken, event) {
     setToggle(event.target.checked)
@@ -78,12 +38,12 @@ export default function PostReview(props) {
         await axios.put(`/api/myrecipes/${recipeId}`, {}, {
           headers: { Authorization: `Bearer ${authToken}` }
         })
-        fetchRecipe()
+        props.fetchRecipe()
       } else {
         await axios.put(`/api/myrecipes/unstar/${recipeId}`, {}, {
           headers: { Authorization: `Bearer ${authToken}` }
         })
-        fetchRecipe()
+        props.fetchRecipe()
       }
 
     } catch (err) {

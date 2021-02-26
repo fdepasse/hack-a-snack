@@ -20,13 +20,10 @@ export default function Login({ history }) {
       const { data } = await axios.post('/api/login', formData)
       if (localStorage) {
         localStorage.setItem('token', data.token)
-        console.log(localStorage)
-        console.log(data)
       }
       history.push('/')
     } catch (err) {
       alert(err.response.data.message)
-      // console.log(err.response.data)
     }
   }
 

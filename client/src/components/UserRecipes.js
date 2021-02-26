@@ -49,7 +49,7 @@ export default function UserRecipes(props) {
           slidesToScroll: 2,
           infinite: true,
           dots: true,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -58,7 +58,7 @@ export default function UserRecipes(props) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -66,7 +66,7 @@ export default function UserRecipes(props) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 1
         }
       }
     ]
@@ -88,7 +88,7 @@ export default function UserRecipes(props) {
           slidesToScroll: 2,
           infinite: true,
           dots: true,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -97,7 +97,7 @@ export default function UserRecipes(props) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -105,38 +105,29 @@ export default function UserRecipes(props) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 1
         }
       }
     ]
   }
 
   function sliderStyles(array) {
-    if (array.length < 5) {
+    if (array.length < 7) {
       return array.length
-    }
-    else if (array.length >= 5) {
-      return 5
+    } else if (array.length >= 7) {
+      return 7
     }
   }
 
   const sliderStyle = {
-    height: '25%',
+    height: '25%'
   }
   function recipesAdded(array) {
     if (array.length === 0) {
-      return `No recipes added yet 🥗`
+      return 'No recipes added yet 🥗'
     }
   }
 
-  function sliderStyles(array) {
-    if (array.length < 5) {
-      return array.length
-    }
-    else if (array.length >= 5) {
-      return 3
-    }
-  }
 
   return <main className='column accountContainer'>
     <h1 className='title is-2' id='myaccount'>{name}'s Recipes</h1>

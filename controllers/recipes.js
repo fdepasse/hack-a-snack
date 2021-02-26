@@ -14,7 +14,6 @@ async function getSingleRecipe(req, res, next) {
   const id = req.params.recipeId
   try {
     const recipe = await Recipes.findById(id).populate('user').populate('comments.user').populate('review.user')
-    console.log(id)
     res.status(201).send(recipe)
   } catch (err) {
     console.log(err)
@@ -48,9 +47,8 @@ async function getRecipesByUser(req, res, next) {
   }
 }
 
-async function updateRecipe(req, res, next) { //tested without secureRoute enabled on router -> need to retest user permissions
+async function updateRecipe(req, res, next) {
   const id = req.params.recipeId
-  // console.log('the id inside update is: ' + id)
   const currentUser = req.currentUser
   const body = req.body
 
@@ -96,7 +94,7 @@ async function deleteRecipe(req, res, next) { //tested without secureRoute enabl
     res.send(recipeToDelete)
 
   } catch (err) {
-    console.log('ERROR:', err)
+    console.log(err)
     next()
   }
 }
@@ -122,7 +120,6 @@ async function searchRecipe(req, res, next) {
   try {
     const recipeList = await Recipes.find({ $text: { $search: `'${searchData}'` } }).populate('user').populate('comments.user')
 
-    console.log(recipeList)
     res.status(200).send(recipeList)
 
   } catch (err) {

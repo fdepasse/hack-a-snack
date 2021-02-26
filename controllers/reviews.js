@@ -12,12 +12,7 @@ async function postReview(req, res, next) {
 
     if (!selectedRecipe) {
       return res.status(404).send({ message: 'Recipe Not Found' })
-    }
-
-    // console.log('selectedRecipe' + selectedRecipe)
-    // console.log('reviewdata' + reviewData)
-    // console.log('review =' + review)
-    
+    }   
 
     selectedRecipe.review.push(reviewData)
 

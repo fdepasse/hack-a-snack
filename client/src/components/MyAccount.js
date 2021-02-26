@@ -54,7 +54,7 @@ export default function myAccount({ match }) {
           slidesToScroll: 2,
           infinite: true,
           dots: true,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -63,7 +63,7 @@ export default function myAccount({ match }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -71,7 +71,7 @@ export default function myAccount({ match }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 1
         }
       }
     ]
@@ -81,8 +81,8 @@ export default function myAccount({ match }) {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: savedRecipes.length,
-    slidesToScroll: 5,
+    slidesToShow: sliderStyles(savedRecipes),
+    slidesToScroll: sliderStyles(savedRecipes),
     autoplay: true,
     rows: 1,
     responsive: [
@@ -93,7 +93,7 @@ export default function myAccount({ match }) {
           slidesToScroll: 2,
           infinite: true,
           dots: true,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -102,7 +102,7 @@ export default function myAccount({ match }) {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
-          rows: 1,
+          rows: 1
         }
       },
       {
@@ -110,27 +110,26 @@ export default function myAccount({ match }) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          rows: 1,
+          rows: 1
         }
       }
     ]
   }
 
   const sliderStyle = {
-    height: '25%',
+    height: '25%'
   }
 
   function recipesAdded(array) {
     if (array.length === 0) {
-      return `No recipes added yet 👨‍🍳`
+      return 'No recipes added yet 👨‍🍳`'
     }
   }
 
   function sliderStyles(array) {
     if (array.length < 5) {
       return array.length
-    }
-    else if (array.length >= 5) {
+    } else if (array.length >= 5) {
       return 3
     }
   }

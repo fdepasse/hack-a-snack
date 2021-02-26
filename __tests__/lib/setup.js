@@ -34,7 +34,6 @@ export default async function setup(done) {
         isAdmin: false
       }
     ])
-    console.log(users)
     await Recipes.create([
       {
         ingredients: [
@@ -199,7 +198,5 @@ export default async function setup(done) {
   } catch (err) {
     console.log(err)
   }
-
-  console.log('hello')
   done()
 }

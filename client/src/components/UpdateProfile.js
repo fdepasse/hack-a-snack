@@ -22,8 +22,6 @@ export default function UpdateProfileModal(props) {
     })
       .then(({ data }) => {
         updateFormData(data)
-        console.log(data)
-        console.log(formData)
       })
   }, [])
 

@@ -25,8 +25,6 @@ export default function AddRecipeModal({ history }) {
     allergens: []
   })
 
-  console.log(formData)
-  console.log(updateFormData)
 
 
   //!! THIS WILL MATCH THE VALUES INPUTTED TO THE FORM INPUTS
@@ -38,7 +36,6 @@ export default function AddRecipeModal({ history }) {
       ...formData,
       [name]: value
     })
-    console.log(event)
   }
 
   //!! 
@@ -86,7 +83,6 @@ export default function AddRecipeModal({ history }) {
       const { data } = await axios.post('/api/recipes', newFormData, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      console.log(data._id)
       //!! PUSH USER RECIPE THEY HAVE JUST CREATED
       history.push(`/recipes/${data._id}`)
     } catch (err) {
