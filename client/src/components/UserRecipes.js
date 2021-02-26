@@ -139,7 +139,7 @@ export default function UserRecipes(props) {
   }
 
   return <main className='column accountContainer'>
-    <h1 className='title is-2 has-text-centered' id='myaccount'>{name}'s Recipes</h1>
+    <h1 className='title is-2' id='myaccount'>{name}'s Recipes</h1>
     <img className='profilePic' src={image} />
     <div>
       <h2 className='title is-4'>Saved Recipes</h2>
@@ -155,7 +155,7 @@ export default function UserRecipes(props) {
       </Slider>
     </div>
     <div>
-      <h2 className='title is-4'>Posted Recipes</h2>
+      <h2 className='title is-4' style={{ paddingTop: '30px' }}>Posted Recipes</h2>
       <span>{recipesAdded(postedRecipes)}</span>
       <hr />
       <Slider {...settingsPosted} style={sliderStyle}>
