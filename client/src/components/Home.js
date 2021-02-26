@@ -64,7 +64,7 @@ const Home = ({ history }) => {
             </div>
             <div className="field">
               <div className="control">
-                <button className="button is-rounded">Search</button>
+                <button className="button is-dark is-rounded">Search</button>
               </div>
             </div>
           </form>

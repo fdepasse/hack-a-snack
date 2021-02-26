@@ -78,13 +78,11 @@ export default function PostReview(props) {
         await axios.put(`/api/myrecipes/${recipeId}`, {}, {
           headers: { Authorization: `Bearer ${authToken}` }
         })
-        alert('saved to my collection')
         fetchRecipe()
       } else {
         await axios.put(`/api/myrecipes/unstar/${recipeId}`, {}, {
           headers: { Authorization: `Bearer ${authToken}` }
         })
-        alert('recipe unstarred from collection')
         fetchRecipe()
       }
 
@@ -108,9 +106,6 @@ export default function PostReview(props) {
             <img src={recipes.image} alt={recipes.recipeName} style={{ borderRadius: '12px' }} />
           </figure>
           <nav className="level is-mobile level-right">
-            {/* <div className="level-right">
-              <button className="level-item" onClick={() => handleSaveRecipe(props.recipeId, token)}>❤️</button>
-            </div> */}
 
             <div className="pretty p-switch p-fill">
               <input type="checkbox" onChange={(event) => handleSaveRecipe(props.recipeId, token, event)} />

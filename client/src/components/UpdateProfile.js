@@ -89,30 +89,30 @@ export default function UpdateProfileModal(props) {
   return <>
 
     <div className="container">
-
-      <button className="button is-danger" onClick={() => showModal(!modal)}>Edit yo account!  👩‍💻 </button>
-
+      <div className="buttons has-addons is-right">
+        <button className="button is-dark is-rounded" onClick={() => showModal(!modal)}>Edit Account</button>
+      </div>
     </div>
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
 
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">Update your profile...</p>
+          <p className="modal-card-title">Update your profile:</p>
           <button className="delete" aria-label="close" onClick={() => showModal(!modal)} />
         </header>
 
         <section className="modal-card-body">
           <main className='column'>
             <div className='column is-flex is-flex-direction-column is-align-items-center'>
-              
 
-              <h1 className='title is-1'>Edit details here...</h1>
+
+              <h1 className='title is-1'>Edit your profile:</h1>
               <form className='field'>
                 <div className='field'>
                   <figure className="image is-128x128" src={formData.image}>
-                    
-                    <img className="is-rounded"/>
+
+                    <img className="is-rounded" />
                   </figure>
                   <label className='label-text'>Username</label>
                   <div className='control'>
@@ -127,7 +127,7 @@ export default function UpdateProfileModal(props) {
                 <div className='field'>
                   <label className='label'>Profile Picture</label>
                   <div className='control'>
-                    <button className="button" onClick={handleUpload}>Click to upload an image</button>
+                    <button className="button is-dark is-rounded" onClick={handleUpload}>Click to upload an image</button>
                   </div>
                 </div>
 
@@ -138,8 +138,8 @@ export default function UpdateProfileModal(props) {
           </main>
         </section>
         <footer className="modal-card-foot">
-          <button className="button" onClick={() => showModal(!modal)}>Cancel</button>
-          <button className="button is-link" onClick={handleSubmit}>Update your profile</button>
+          <button className="button is-dark is-rounded" onClick={() => showModal(!modal)}>Cancel</button>
+          <button className="button is-link is-rounded" onClick={handleSubmit}>Update</button>
         </footer>
       </div>
     </div>

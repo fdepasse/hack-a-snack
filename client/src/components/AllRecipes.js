@@ -155,11 +155,11 @@ const AllRecipes = ({ history }) => {
   // ! End of the filtering part ----------------------------
 
 
-  return <main>
+  return <main id="herobackgroundsearch" style={{backgroundAttatchment: 'scroll'}}>
     {/* Search Bar */}
     <section className="section">
-      <h1 className="title">ALL RECIPES</h1>
-      <h3 className="subtitle">SEARCH FOR A NEW RECIPE</h3>
+      <h1 className="title" id="allrec">ALL RECIPES</h1>
+      <h3 className="subtitle">Search for a new recipe</h3>
       <div className="column">
         <form onSubmit={handleSubmit}>
           <div className="field">
@@ -184,7 +184,7 @@ const AllRecipes = ({ history }) => {
 
     {/* Menu and Recipes */}
     <section className="section">
-      <h3 className="subtitle">BROWSE RECIPES</h3>
+      <h3 className="subtitle" id="browserec">BROWSE RECIPES</h3>
       <p className="content">{filterRecipes().length} Recipes Available</p>
       <div className="columns">
 
@@ -273,7 +273,7 @@ const AllRecipes = ({ history }) => {
 
               <div className="panel-block">
                 <button
-                  className="button is-link is-outlined is-fullwidth"
+                  className="button is-dark is-rounded is-fullwidth"
                   onClick={resetFilters}>
                   Reset all filters</button>
               </div>

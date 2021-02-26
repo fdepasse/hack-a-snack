@@ -56,12 +56,12 @@ const Navbar = ({ history }) => {
           <div className="menu-item">
             {/* {loggedIn && <h1>{ `Welcome! ${showUser.username}`}</h1>}
             {loggedIn && <img src={showUser.image}></img>} */}
-            {!loggedIn && <Link to="/register" className="button is-light">Register</Link>}
-            {<Link to="/recipes" className="button is-light">All Recipes</Link>}
-            {loggedIn && <Link to="/myaccount" className="button is-dark">My Account</Link>}
-            {loggedIn && <Link to="/modal" className="button is-light">Post a Recipe</Link>}
-            {!loggedIn && <Link to="/login" className="button is-dark">Login</Link>}
-            {loggedIn && <button className="button is-light" onClick={handleLogout}>Logout</button>}
+            {!loggedIn && <Link to="/register" className="button is-light is-rounded">Register</Link>}
+            {<Link to="/recipes" className="button is-light is-rounded">All Recipes</Link>}
+            {loggedIn && <Link to="/myaccount" className="button is-dark is-rounded">My Account</Link>}
+            {loggedIn && <Link to="/modal" className="button is-light is-rounded">Post a Recipe</Link>}
+            {!loggedIn && <Link to="/login" className="button is-dark is-rounded">Login</Link>}
+            {loggedIn && <button className="button is-light is-rounded" onClick={handleLogout}>Logout</button>}
           </div>
         </div>
       </div>
