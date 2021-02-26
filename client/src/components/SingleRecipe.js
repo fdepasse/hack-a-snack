@@ -61,37 +61,37 @@ const SingleRecipe = ({ match, history }) => {
     }
   }
 
-  return <main className="hero is-fullheight is-center">
+  return <main className="hero is-fullheight is-center" id="herobackground">
     <div className="hero-body">
       <div className="container block box" id="singlerecipebox">
-      <div className="columns">
+        <div className="columns">
 
-        <div className="column is-two-fifths is-flex is-flex-direction-column" id="columnleft" style={{ alignItems: 'stretch' }}>
-          <PostReview recipe={recipe} recipeId={recipeId} fetchRecipe={fetchRecipe} userId={userId} />
-        </div>
-
-        <div className="column is-three-fifths is-flex is-flex-direction-column" style={{ alignItems: 'stretch' }}>
-          <div className="block box">
-            {isCreator(recipe.user._id) && <EditRecipeModal recipeId={recipeId} history={history} fetchRecipe={fetchRecipe} />}
-            <h1 className="title">{recipe.recipeName}</h1>
-            <Link to={correctUserPage()} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
+          <div className="column is-two-fifths is-flex is-flex-direction-column" id="columnleft" style={{ alignItems: 'stretch' }}>
+            <PostReview recipe={recipe} recipeId={recipeId} fetchRecipe={fetchRecipe} userId={userId} />
           </div>
 
-          <div className="block box">
-            <h5 className="subtitle">{recipe.review.length} reviews</h5>
-            <h5 className="subtitle">Average Rating: </h5>
-            <Rating
-              start={0}
-              stop={5}
-              initialRating={averageRating()}
-              readonly={true}
-              fractions={2}
-            />
-          </div>
-          <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
-          <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
-        <div className="box" style={{ maxHeight: '475px', overflow: 'scroll' }}>
-          <div className="buttons has-addons is-right">
+          <div className="column is-three-fifths is-flex is-flex-direction-column" style={{ alignItems: 'stretch' }}>
+            <div className="block box">
+              {isCreator(recipe.user._id) && <EditRecipeModal recipeId={recipeId} history={history} fetchRecipe={fetchRecipe} />}
+              <h1 className="title">{recipe.recipeName}</h1>
+              <Link to={correctUserPage()} className="subtitle">{`Created by: ${recipe.user.username}`}</Link>
+            </div>
+
+            <div className="block box">
+              <h5 className="subtitle">{recipe.review.length <= 1 ? `${recipe.review.length} review` : `${recipe.review.length} reviews`}</h5>
+              <h5 className="subtitle">Average Rating: </h5>
+              <Rating
+                start={0}
+                stop={5}
+                initialRating={averageRating()}
+                readonly={true}
+                fractions={2}
+              />
+            </div>
+            <h5 className="subtitle">{`Cooking time: ${recipe.cookingTime} minutes`}</h5>
+            <h5 className="subtitle">{`Allergens: ${recipe.allergens}`}</h5>
+            <div className="box" style={{ maxHeight: '475px', overflow: 'scroll' }}>
+              <div className="buttons has-addons is-right">
                 <button className="button is-dark is-rounded" onClick={() => speak({ text: ingredientsList })}>
                   Serenade me with the recipe</button>
                 <button className="button is-light is-rounded" onClick={cancel}>Stop</button>
@@ -110,7 +110,7 @@ const SingleRecipe = ({ match, history }) => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
   </main >
 }
 

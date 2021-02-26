@@ -7,15 +7,11 @@ import Allergens from '../AddRecipe/Allergens'
 import { Link } from 'react-router-dom'
 import Creatable from 'react-select/creatable'
 
-
-
-
 export default function EditRecipeModal(props) {
   const [modal, showModal] = useState(false)
   const token = localStorage.getItem('token')
   const recipeId = props.recipeId
   const history = props.history
-
 
   const [formData, updateFormData] = useState({
     recipeName: '',
@@ -126,16 +122,10 @@ export default function EditRecipeModal(props) {
     history.push('/recipes')
   }
 
-
-
-
-
   return <>
     <div className="buttons had-addons is-right">
-
       <button className="button is-dark is-rounded" onClick={() => showModal(!modal)}>Edit</button>
       <button className="button is-dark is-rounded" onClick={() => handleDelete(recipeId)}>Delete</button>
-
     </div>
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
       <div className="modal-background" />

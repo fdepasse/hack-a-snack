@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+
+$tabs-link-color: white;
+$tabs-link-active-color: white;
+$tabs-boxed-link-active-background-color: black;
+@import "../../node_modules/bulma/bulma.sass";
+
 
 .menu-item {
   display: inline;
@@ -9,7 +16,8 @@
   }
 }
 
-nav.navbar, .footer  {
+nav.navbar,
+.footer {
   background-color: #020100;
 }
 
@@ -21,20 +29,20 @@ nav.navbar, .footer  {
   align-items: stretch;
 }
 
-.slideImage{
+.slideImage {
   height: 200px;
   width: 250px;
   border-radius: 12px;
   background-color: grey;
 }
-.suggested{
+.suggested {
   border-left: whitesmoke 3px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.accountContainer{
+.accountContainer {
   padding: 20px;
 }
 
@@ -42,9 +50,7 @@ nav.navbar, .footer  {
 
 #singlerecipebox {
   width: 90%;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
+  border-radius: 12px;
   max-height: 1500px !important;
 }
 
@@ -53,7 +59,19 @@ nav.navbar, .footer  {
 }
 
 #herobackground {
+  background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80");
+  background-size: cover;
+  background-position: center right;
+}
+
+#herobackgroundsearch {
   background-image: url('https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  background-position: center center fixed;
+  overflow: scroll;
 }
 
 .button {
@@ -83,7 +101,12 @@ nav.navbar, .footer  {
   font-size: 3em;
 }
 
-.modal-card-head, .modal-card-foot {
+#myaccount {
+  font-family: 'Pacifico', cursive;
+}
+
+.modal-card-head,
+.modal-card-foot {
   background-color: #020100;
 }
 
@@ -91,19 +114,41 @@ p.modal-card-title {
   color: white;
 }
 
-.file-name{
+.file-name {
   background-color: white;
   padding: 30px;
 }
 
-.logout{
-  font-family: 'Pacifico', cursive;
+.logout {
+  font-family: "Pacifico", cursive;
   padding: 50px;
   font-size: 6em;
 }
 
 .load {
   display: flex;
-  justify-content: 'center';
-  align-items: 'center';
+  justify-content: "center";
+  align-items: "center";
 }
+
+.homepage-title {
+  font-family: "Pacifico", cursive;
+}
+
+#allrec, #browserec, #resultstitle {
+  font-family: 'Pacifico', cursive;
+}
+
+
+.profilePic{
+  border-radius: 50%;
+  height: 150px;
+}
+
+// .containerAcc{
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 50%;
+// }
+ 

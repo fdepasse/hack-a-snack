@@ -89,9 +89,9 @@ export default function UpdateProfileModal(props) {
   return <>
 
     <div className="container">
-
-      <button className="button is-danger" onClick={() => showModal(!modal)}>Edit yo account!  👩‍💻 </button>
-
+      <div className="buttons has-addons is-right">
+        <button className="button is-dark is-rounded" onClick={() => showModal(!modal)}>Edit Account</button>
+      </div>
     </div>
     <div role="button" className={`modal ${modal ? 'is-active' : ''}`}>
 
@@ -120,7 +120,6 @@ export default function UpdateProfileModal(props) {
 
 
                 <div className='field'>
-
                   <label className='label-text'>Username</label>
                   <div className='control'>
                     <input className='input'
@@ -134,7 +133,7 @@ export default function UpdateProfileModal(props) {
                 <div className='field'>
                   <label className='label-text'>Profile Picture</label>
                   <div className='control'>
-                    <button className="button" onClick={handleUpload}>Click to upload an image</button>
+                    <button className="button is-dark is-rounded" onClick={handleUpload}>Click to upload an image</button>
                   </div>
                 </div>
 

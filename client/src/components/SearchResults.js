@@ -48,17 +48,17 @@ const SearchResults = ({ location, history }) => {
     })
   }
 
-  return <main>
+  return <main id="herobackgroundsearch" style={{backgroundAttatchment: 'scroll'}}>
     <section className="section">
       <div className="column">
-        <h1 className="title">Results</h1>
-        <h3 className="subtitle">{`${recipeData.length} recipes found`}</h3>
+        <h1 className="title has-text-white" id="resultstitle">Results</h1>
+        <h3 className="subtitle has-text-white">{`${recipeData.length} recipes found`}</h3>
         <form onSubmit={handleSubmit}>
           <div className="field">
             <div className="control">
               <input
                 onChange={event => updateSearchData(event.target.value)}
-                className="input"
+                className="input is-rounded"
                 type="text"
                 placeholder="Enter your search here"
                 value={searchData}
@@ -67,7 +67,7 @@ const SearchResults = ({ location, history }) => {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button">Search</button>
+              <button className="button is-rounded">Search</button>
             </div>
           </div>
         </form>
@@ -76,7 +76,7 @@ const SearchResults = ({ location, history }) => {
 
     <section className="section">
       <div className="block">
-        <h4 className="subtitle">Show Results by:</h4>
+        <h4 className="subtitle has-text-white">Show Results by:</h4>
       </div>
       <div className="tabs is-boxed">
         <ul>
