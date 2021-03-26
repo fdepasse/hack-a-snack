@@ -48,7 +48,7 @@ const SearchResults = ({ location, history }) => {
     })
   }
 
-  return <main id="herobackgroundsearch" style={{backgroundAttatchment: 'scroll'}}>
+  return <main id="herobackgroundsearch" style={{ backgroundAttatchment: 'scroll' }}>
     <section className="section">
       <div className="column">
         <h1 className="title has-text-white" id="resultstitle">Results</h1>
