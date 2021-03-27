@@ -263,8 +263,7 @@ Should a user do a new search from this page, the same logic applied in the Home
 
 ### Challenges
 * Seeding has been challenging, we were limited in the Public API calls to first feed our database
-* Manipulate the API data
-* Live Share not always easy to use depending on the Internet connection strength
+* Filtering by Diet, Lifestyle and Allergens on the "All Recipes" page has been tricky with a lot of moving parts and data to store in state
 
 ### Learnings
 * Planning is absolutely key and has really helped delivering our app on time
