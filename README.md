@@ -270,4 +270,5 @@ Should a user do a new search from this page, the same logic applied in the Home
 * Planning is absolutely key and has really helped delivering our app on time
 * Making sure backend and frontend work well together
 * Reading documentations extensively whether it was to use a new library or debug issues
+* Working with Git branches, such a great way to collaborate and align with the team
 * Deploying on Heroku
