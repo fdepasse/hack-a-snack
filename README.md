@@ -153,7 +153,7 @@ describe('Testing recipes end points', () => {
 We used Google Slides to wireframe our User Interface as a group. We listed all the pages we would need and what each would look like depending if a user is logged in or not. We also defined how to navigate through the app and planned where the links would sit.
 
 
-<p align="center">*A few examples of our wireframe*<img src="images/wireframe.png"><p/>
+<p align="center">A few examples of our wireframe<img src="images/wireframe.png"><p/>
 
 <br/>
 
