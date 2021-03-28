@@ -27,7 +27,7 @@ It was a **group** project with 4 team members and the timeline was  **9 days**.
 
 The application allows users to browse and search recipes by name or ingredients, filter by dietary requirements, create and share their own recipes as well as commenting others' and saving their favourites to their profile.
 
-It is a full stack app built with React JS, Express, Mongoose and talking to a NoSQL MongoDB database. It has been deployed via Heroku.
+It is a full stack app built with React JS, Node.js, Express, Mongoose and talking to a NoSQL MongoDB database. It has been deployed via Heroku.
 
 >Access the **app** [here](https://hackasnack.herokuapp.com/) and the **repository** [here](https://github.com/fdepasse/hack-a-snack)
 
