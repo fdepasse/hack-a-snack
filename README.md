@@ -82,7 +82,7 @@ You need to install [Node.js](https://nodejs.org/en/) to be able to proceed with
 |          |                 [Fabien Depasse](https://github.com/fdepasse)                |                [Kate Joyce](https://github.com/kate1562)               |                              [Jess Karia](https://github.com/JessKaria)                              |            [Emily Randall](https://github.com/emilyrandall1998)            |
 |:--------:|:----------------------------------------------------------------------------:|:----------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|
 |  Backend |    Recipe reviews <br/> Generating random recipes <br/> Searching recipes    | User authentication <br/> Saving recipes <br/> Getting recipes by user | User registration <br/> User authentication <br/> User profile editing <br/> Recipe creating/editing | Getting all recipes <br/> Getting one recipe <br/> Recipe creating/editing |
-| Frontend | Home page <br/> Search functionality <br/> All Recipes page: filtering <br/> |                    User profile page <br/> Carousels                   |                User register/login/logout <br/> Create/Edit a new recipe <br/> Nav Bar               |                      Single Recipe Page <br/> Reviews                      |                       |                     |
+| Frontend | homepage <br/> Search functionality <br/> All Recipes page: filtering <br/> |                    User profile page <br/> Carousels                   |                User register/login/logout <br/> Create/Edit a new recipe <br/> Nav Bar               |                      Single Recipe Page <br/> Reviews                      |                       |                     |
 
 
 <br/>
@@ -199,7 +199,7 @@ In order to be able to perform searches on the Recipe model, I slightly modified
 
 `recipeSchema.index({ '$**': 'text' })`
 
-On the frontend, the search bar has been implemented in different components but let us look at the Home page. When the user enter their search in the input field, an `onChange` event stores it in state `searchData`. The search bar itself is wrapped in a form which takes an `onSubmit` listener and triggers a callback function `handleSubmit`. The callback prevents the browser to reload the page and uses the `history` object `push()` method of react-router to redirect the user to the search results page and store the `searchData` on the `location` object of react-router.
+On the frontend, the search bar has been implemented in different components but let us look at the homepage. When the user enter their search in the input field, an `onChange` event stores it in state `searchData`. The search bar itself is wrapped in a form which takes an `onSubmit` listener and triggers a callback function `handleSubmit`. The callback prevents the browser to reload the page and uses the `history` object `push()` method of react-router to redirect the user to the search results page and store the `searchData` on the `location` object of react-router.
 
 ```
   function handleSubmit(event) {
@@ -212,7 +212,7 @@ On the frontend, the search bar has been implemented in different components but
   }
 ```
 
-Now react renders the `SearchResults` component and the `searchData` state is updated with the `location.state` we passed from the Home page (this is the user input). We pass `searchData` as query in the URL to make a request to our API in a `useEffect` and store the recipe data returned in state `recipeData`. We then use this data to display and filter the results on the page for the user to see.
+Now react renders the `SearchResults` component and the `searchData` state is updated with the `location.state` we passed from the homepage (this is the user input). We pass `searchData` as query in the URL to make a request to our API in a `useEffect` and store the recipe data returned in state `recipeData`. We then use this data to display and filter the results on the page for the user to see.
 
 ```
 const SearchResults = ({ location, history }) => {
